@@ -1,10 +1,11 @@
 {
-    "name": "cv",
+    "name": "get_hired_app",
     "version": "0.0.1",
-    "description": "CV App",
+    "description": "Get Hired App",
     "main": "index.js",
     "scripts": {
         "start": "concurrently \"npm run server\" \"npm run client\"",
+        "build": "concurrently \"cd client && npm i\" \"cd backend && npm i\"",
         "server": "cd ./backend && npm start",
         "client": "cd ./client && npm start",
         "test": "echo \"Error: no test specified\" && exit 1"
