@@ -1,18 +1,24 @@
 {
-    "name": "get_hired_app",
-    "version": "0.0.1",
-    "description": "Get Hired App",
-    "main": "index.js",
+    "name": "backend",
+    "version": "0.0.0",
+    "private": true,
+    "main": "app.js",
     "scripts": {
-        "start": "npm run server",
-        "build": "concurrently \"npm i\" \"cd client && npm i\" \"cd backend && npm i\"",
-        "server": "cd ./backend && npm start",
-        "client": "cd ./client && npm start",
-        "test": "echo \"Error: no test specified\" && exit 1"
+        "start": "nodemon ./bin/www",
+        "heroku-postbuild": "cd client && npm install && npm run build"
     },
-    "author": "Gilad Tsabar",
-    "license": "ISC",
-    "devDependencies": {
-        "concurrently": "^5.2.0"
-    }
+    "dependencies": {
+        "cookie-parser": "~1.4.4",
+        "cors": "^2.8.5",
+        "debug": "~2.6.9",
+        "express": "~4.16.1",
+        "express-graphql": "^0.9.0",
+        "graphql": "^14.6.0",
+        "lodash": "^4.17.15",
+        "mongoose": "^5.9.13",
+        "morgan": "~1.9.1",
+        "react": "^16.13.1",
+        "react-dom": "^16.13.1"
+    },
+    "devDependencies": {}
 }

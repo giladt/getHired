@@ -4,7 +4,7 @@
 node_modules
 
 client/src/components/_OLD/
-backend/schema/schema(BkUp).js
+schema/schema(BkUp).js
 
 /.pnp
 .pnp.js
