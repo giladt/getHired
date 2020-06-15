@@ -4,7 +4,7 @@
     "private": true,
     "main": "app.js",
     "scripts": {
-        "start": "nodemon ./bin/www",
+        "start": "node ./bin/www",
         "heroku-postbuild": "cd client && npm install && npm run build"
     },
     "dependencies": {
