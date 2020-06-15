@@ -1,0 +1,42 @@
+:local(.col) {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(30rem, 1fr));
+    grid-gap: 1rem;
+}
+
+:local(.barBg) {
+    display: block;
+    height: 2rem;
+    background: var(--scale-bar-bg);
+    box-shadow: 0 0 0.3rem 0.1rem var(--scale-bar-bg);
+    margin: 0.75rem 0;
+    line-height: 2rem;
+}
+
+:local(.barFg) {
+    display: inline-block;
+    position: relative;
+    height: 1.75rem;
+    top: 0;
+    background: linear-gradient(90deg, var(--scale-bar-bg) 20%, var(--scale-bar-fg));
+    line-height: 1.75rem;
+    vertical-align: middle;
+    /*box-shadow: 0 0 0.3rem 0.1rem;*/
+    border-radius: 0.25rem;
+    padding-left: 0.5rem;
+}
+
+:local(.barBg strong) {
+    display: block;
+    position: relative;
+    top: -2rem;
+    left: 0.25rem;
+    text-transform: uppercase;
+    color: var(--sub-header)
+}
+
+:local(.barBg small) {
+    font-size: 0.7rem;
+    text-transform: capitalize;
+    color: var(--main-fg)
+}

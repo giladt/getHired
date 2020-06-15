@@ -1,0 +1,118 @@
+:local(.profilePicture) {
+    overflow: hidden;
+    box-shadow: 0 0 1rem 0.5rem var(--main-bg-25);
+    border-radius: 0.5rem;
+    z-index: 2;
+    transition: all 0.25s;
+}
+
+:local(.profilePicture:hover) {
+    overflow: hidden;
+    box-shadow: 0 0 1rem 0.3rem var(--main-bg-25);
+}
+
+:local(.profilePicture>.img) {
+    height: 100%;
+    background-image: url(/images/profile/placeholder.png);
+    background-repeat: no-repeat;
+    transition: all 0.25s;
+}
+
+:local(.profilePicture>.blur) {
+    position: relative;
+    margin-left: 0rem;
+    transition: all 0.25s;
+    z-index: 1;
+    overflow: hidden;
+    left: 0;
+    width: 22rem;
+}
+
+@media screen and (min-width: 750px) {
+     :local(.profilePicture) {
+        grid-area: img;
+        height: 100%;
+    }
+     :local(.profilePicture>.img) {
+        margin-left: -5%;
+        background-size: auto 101%;
+        background-position: center;
+    }
+     :local(.profilePicture:hover>.img) {
+        background-size: auto 100%;
+    }
+     :local(.profilePicture>.blur) {
+        top: 0;
+        height: 91vh;
+        margin-top: -91vh;
+        background: linear-gradient(65deg, var(--main-bg-50) 0%, var(--main-bg-50) 25%, transparent 60%);
+    }
+     :local(.profilePicture:hover>.blur) {
+        margin-top: -90.85vh;
+    }
+     :local(.profilePicture>.text) {
+        position: relative;
+        margin-top: -15rem;
+        margin-bottom: 3rem;
+        padding: 0 0.5rem;
+        height: 12rem;
+        color: var(--main-fg);
+        text-align: center;
+        z-index: 1;
+    }
+     :local(.profilePicture>.text>h1) {
+        font-size: 3rem;
+        color: var(--main-fg);
+        margin: 0.5rem;
+    }
+     :local(.profilePicture>.text>h2) {
+        font-size: 2rem;
+        color: var(--main-fg-theme);
+    }
+}
+
+@media screen and (max-width: 750px) {
+     :local(.profilePicture) {
+        visibility: visible;
+        grid-row-start: 1;
+        grid-row-start: 1;
+        grid-column-start: 1;
+        grid-column-end: 4;
+        margin-left: 0;
+        background-size: 50% auto;
+        background-position: right;
+    }
+     :local(.profilePicture>.img) {
+        background-size: cover;
+        background-position: center;
+        overflow: hidden;
+        border-radius: 50%;
+        width: 8rem;
+        height: 8rem;
+        padding: 0.5rem;
+        margin: 0.5rem;
+    }
+     :local(.profilePicture>.blur) {
+        visibility: hidden;
+    }
+     :local(.profilePicture>.text) {
+        position: relative;
+        margin-left: 10rem;
+        padding: 0 0.5rem;
+        height: 100%;
+        top: -95%;
+        color: var(--main-fg);
+        text-align: center;
+        z-index: 1;
+    }
+     :local(.profilePicture>.text>h1) {
+        font-size: 2rem;
+        color: var(--main-fg);
+        margin: 0.5rem;
+    }
+     :local(.profilePicture>.text>h2) {
+        font-size: 0.5rem;
+        margin: 0 0.5rem;
+        color: var(--main-fg-theme);
+    }
+}

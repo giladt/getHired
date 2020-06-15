@@ -1,0 +1,26 @@
+:local(h1) {
+    color: var(--main-fg);
+}
+
+:local(.root) {
+    display: inline-block;
+    height: 95vh;
+    line-height: 95vh;
+    text-align: center;
+    text-shadow: 0 0 3rem;
+}
+
+:local(.root::before) {
+    content: 'TSABAR';
+    font-size: 15rem;
+    font-weight: bolder;
+}
+
+:local(.root::after) {
+    content: '.net';
+    color: goldenrod;
+    font-size: 5rem;
+    letter-spacing: -7px;
+    display: inline-block;
+    text-shadow: none;
+}

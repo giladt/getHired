@@ -1,0 +1,95 @@
+section.loading {
+    grid-column-start: 1;
+    grid-column-end: 4;
+    grid-row-start: 1;
+    grid-row-end: 4;
+    text-align: center;
+    align-self: center;
+    font-size: 2em;
+}
+
+section>article>.map-container {
+    position: relative;
+    height: 17.5rem;
+    border-radius: 0.5rem;
+    margin: 0 0.15rem;
+    box-shadow: 0 0 0.5rem 0 var(--body-bg);
+    overflow: hidden;
+}
+
+a[title="Report problems with Street View imagery to Google"],
+a[href^="http://maps.google.com/maps"],
+a[href^="https://maps.google.com/maps"],
+.gmnoprint a,
+.gmnoprint span,
+.gm-style-cc {
+    display: none !important;
+}
+
+@media screen and (min-width: 750px) {
+    main {
+        height: 90vh;
+        width: 92.5vw;
+        grid-template-columns: 4rem 20rem auto;
+        grid-template-rows: 2.5vh auto 2.5vh;
+        grid-template-areas: ". img ." "nav img con" ". img .";
+    }
+}
+
+@media screen and (max-width: 750px) {
+    main {
+        height: 95vh;
+        width: 95vw;
+        grid-template-columns: 4rem 3rem auto;
+        grid-template-rows: 10rem 0.5rem auto;
+    }
+    section {
+        padding: 0.1rem;
+    }
+}
+
+section>article>h1 {
+    font-size: 3em;
+}
+
+article.address {
+    display: grid;
+    grid-template-columns: 1.75em auto 50px;
+    margin-block-start: 1.5em;
+    margin-block-end: 0.5em;
+    line-height: 1.25em;
+    white-space: pre-wrap;
+    align-items: center;
+}
+
+section>.profile>.address {
+    grid-row: 2;
+}
+
+article.list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, 250px);
+    grid-template-rows: auto;
+}
+
+article.address {
+    font-weight: bold;
+}
+
+article.address,
+article.list>ul {
+    display: grid;
+    grid-template-rows: auto;
+    grid-template-columns: 50px auto;
+    align-items: center;
+}
+
+article.list>ul {
+    list-style: none;
+    padding-left: 0;
+}
+
+article.address>.icon,
+article.list>ul>li:first-child {
+    text-align: center;
+}

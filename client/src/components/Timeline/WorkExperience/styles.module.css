@@ -1,0 +1,51 @@
+@media screen and (min-width: 1266px) {
+     :local(.roll) {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+        grid-column-gap: 10px;
+        border-bottom: 2px solid var(--border-fg);
+        margin-bottom: 0.5rem;
+    }
+     :local(.roll):not(:last-child) {
+        border-bottom: 1px dashed var(--border-fg);
+    }
+     :local(.roll:nth-child(odd)>*:first-child) {
+        align-self: center;
+        text-align: center;
+    }
+     :local(.roll:nth-child(odd)>*:last-child) {
+        /*grid-column: 1;*/
+    }
+     :local(.roll:nth-child(even)>*:first-child) {
+        align-self: center;
+        text-align: center;
+        order: 1;
+    }
+     :local(.roll:nth-child(even)>*:last-child) {
+        /*grid-column: 1;*/
+    }
+}
+
+@media screen and (max-width: 1265px) {
+     :local(.roll) {
+        display: grid;
+        grid-template-columns: auto;
+        grid-column-gap: 10px;
+    }
+     :local(.roll>*:first-child) {
+        text-align: start;
+    }
+     :local(.roll>*:last-child) {
+        /*grid-column: 1;*/
+    }
+     :local(.roll:nth-child(2)>*:first-child) {
+        text-align: start;
+    }
+     :local(.roll:nth-child(2)>*:last-child) {
+        /*grid-column: 1;*/
+    }
+}
+
+:local(h3) {
+    color: var(--sub-header);
+}

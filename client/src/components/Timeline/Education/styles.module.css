@@ -1,0 +1,5 @@
+:local(.education) {
+    border-bottom: 1px solid var(--border-fg);
+    margin-bottom: 1rem;
+    padding-bottom: 1rem;
+}
