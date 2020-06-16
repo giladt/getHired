@@ -1,5 +1,5 @@
 import React from 'react';
-import ApolloClient from 'apollo-boost';
+import { ApolloClient, InMemoryCache, HttpLink } from 'apollo-boost';
 import { ApolloProvider } from '@apollo/react-hooks';
 import { GoogleApiWrapper } from 'google-maps-react';
 import {
@@ -11,8 +11,14 @@ import Main from './components/main.js';
 import './App.css';
 
 // Apollo Client Setup
+const cache = new InMemoryCache();
+const link = new HttpLink({
+  uri: "http://localhost:4000/graphql"
+});
+
 const client = new ApolloClient({
-  uri: `http://localhost:${process.env.PORT}/graphql`
+  cache,
+  link
 });
 
 function App(props) {
@@ -29,6 +35,6 @@ function App(props) {
 
 export default GoogleApiWrapper(
   {
-    apiKey: process.env.REACT_APP_GOOGLE_API_KEY
+    apiKey: process.env.REACT_APP_GOOGLE_API_KEY,
   }
 )(App);
