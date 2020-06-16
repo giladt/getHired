@@ -12,15 +12,15 @@
 
 :local(.root::before) {
     content: 'TSABAR';
-    font-size: 15rem;
+    font-size: 10vw;
     font-weight: bolder;
 }
 
 :local(.root::after) {
     content: '.net';
     color: goldenrod;
-    font-size: 5rem;
-    letter-spacing: -7px;
+    font-size: 8vw;
+    letter-spacing: -0.7vw;
     display: inline-block;
     text-shadow: none;
 }
