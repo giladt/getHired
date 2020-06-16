@@ -1,7 +1,5 @@
 const express = require('express');
 const path = require('path');
-const cookieParser = require('cookie-parser');
-const logger = require('morgan');
 
 const graphqlHTTP = require('express-graphql');
 const schema = require('./schema/schema');
@@ -13,7 +11,7 @@ app.set('view engine', 'react');
 
 app.use('/graphql', graphqlHTTP({
   schema,
-  graphiql: true
+  graphiql: false
 }));
 
 if (environment === 'production') {

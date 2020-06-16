@@ -18,7 +18,7 @@ const dev_link = new HttpLink({
 });
 
 const prod_link = new HttpLink({
-  uri: `https://tsabar.net/graphql`
+  uri: `//0.0.0.0/graphql`
 });
 
 const link = (process.env.NODE_ENV === 'development')?dev_link:prod_link;
