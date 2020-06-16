@@ -12,10 +12,16 @@ import './App.css';
 
 // Apollo Client Setup
 const cache = new InMemoryCache();
-const port = process.env;
-const link = new HttpLink({
+
+const dev_link = new HttpLink({
   uri: `http://localhost:4000/graphql`
 });
+
+const prod_link = new HttpLink({
+  uri: `http://tsabar.net/graphql`
+});
+
+const link = (process.env.NODE_ENV === 'development')?dev_link:prod_link;
 
 const client = new ApolloClient({
   cache,
@@ -23,7 +29,6 @@ const client = new ApolloClient({
 });
 
 function App(props) {
-  console.log(port);
   return (
     <ApolloProvider client={client}>
       <Router>
