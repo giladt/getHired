@@ -5,6 +5,7 @@
  */
 
 var app = require('../app');
+var env = require('../.env.local');
 var debug = require('debug')('backend:server');
 var http = require('http');
 var mongoose = require('mongoose');
@@ -15,10 +16,10 @@ var mongoose = require('mongoose');
 
 var port = normalizePort(process.env.PORT || '4000');
 var db = {
-    server: process.env.DB_SERVER,
-    name: process.env.DB_NAME,
-    user: process.env.DB_USER,
-    password: process.env.DB_PASSWORD
+    server: env.DB_SERVER,
+    name: env.DB_NAME,
+    user: env.DB_USER,
+    password: env.DB_PASSWORD
 };
 
 app.set('port', port);
