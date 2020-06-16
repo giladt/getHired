@@ -5,7 +5,6 @@
  */
 
 var app = require('../app');
-var env = require('../env.local');
 var debug = require('debug')('backend:server');
 var http = require('http');
 var mongoose = require('mongoose');
@@ -13,6 +12,13 @@ var mongoose = require('mongoose');
 /**
  * Get port from environment and store in Express.
  */
+
+var env = {
+    DB_SERVER: "cv-app-ttvlo.mongodb.net",
+    DB_NAME: "cv-app-db",
+    DB_USER: "gilad",
+    DB_PASSWORD: "jdWYVYtfSVzwHgPx"
+}
 
 var port = normalizePort(process.env.PORT || '4000');
 var db = {
