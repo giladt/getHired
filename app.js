@@ -16,9 +16,6 @@ app.use('/graphql', graphqlHTTP({
   graphiql: true
 }));
 
-console.log(environment);
-
-
 if (environment === 'production') {
   app.use(express.static(path.join(__dirname, 'client/build')));
 
