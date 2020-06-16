@@ -15,7 +15,6 @@ class Contact extends React.Component{
   }
 
   render(){
-    console.log(this.state);
     return(
       <article className="contact">
         <h1>Contact me</h1>

@@ -489,7 +489,6 @@ const Mutation = new GraphQLObjectType({
                 level: { type: new GraphQLNonNull(GraphQLInt) },
             },
             resolve: (parent, args) => {
-                console.log(args.ref_id);
                 let skill = new Skill({
                     ref_id: args.ref_id,
                     name: args.name,
