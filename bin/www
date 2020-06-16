@@ -13,19 +13,12 @@ var mongoose = require('mongoose');
  * Get port from environment and store in Express.
  */
 
-var env = {
-    DB_SERVER: "cv-app-ttvlo.mongodb.net",
-    DB_NAME: "cv-app-db",
-    DB_USER: "gilad",
-    DB_PASSWORD: "jdWYVYtfSVzwHgPx"
-}
-
 var port = normalizePort(process.env.PORT || '4000');
 var db = {
-    server: env.DB_SERVER,
-    name: env.DB_NAME,
-    user: env.DB_USER,
-    password: env.DB_PASSWORD
+    server: process.env.DB_SERVER,
+    name: process.env.DB_NAME,
+    user: process.env.DB_USER,
+    password: process.env.DB_PASSWORD
 };
 
 app.set('port', port);

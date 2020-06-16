@@ -12,7 +12,7 @@ import './App.css';
 
 // Apollo Client Setup
 const client = new ApolloClient({
-  uri: 'http://localhost:4000/graphql'
+  uri: `http://localhost:${process.env.PORT}/graphql`
 });
 
 function App(props) {
@@ -29,6 +29,6 @@ function App(props) {
 
 export default GoogleApiWrapper(
   {
-    apiKey:process.env.REACT_APP_GOOGLE_API_KEY
+    apiKey: process.env.REACT_APP_GOOGLE_API_KEY
   }
 )(App);
