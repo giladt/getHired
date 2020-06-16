@@ -18,7 +18,7 @@ const dev_link = new HttpLink({
 });
 
 const prod_link = new HttpLink({
-  uri: `//0.0.0.0/graphql`
+  uri: `${process.env.PUBLIC_URL}/graphql`
 });
 
 const link = (process.env.NODE_ENV === 'development')?dev_link:prod_link;
