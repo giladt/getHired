@@ -5,7 +5,6 @@
  */
 
 var app = require('../app');
-var debug = require('debug')('backend:server');
 var http = require('http');
 var mongoose = require('mongoose');
 
@@ -88,9 +87,6 @@ function onError(error) {
 /**
  * Event listener for HTTP server "listening" event.
  */
-
-
-
 
 function onListening() {
     var addr = server.address();

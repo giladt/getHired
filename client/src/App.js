@@ -10,19 +10,12 @@ import {
 import Main from './components/main.js';
 import './App.css';
 
+const dev_link = new HttpLink({uri: `http://localhost:4000/api`});
+const prod_link = new HttpLink({uri: `${process.env.PUBLIC_URL}/api`});
+
 // Apollo Client Setup
 const cache = new InMemoryCache();
-
-const dev_link = new HttpLink({
-  uri: `http://localhost:4000/graphql`
-});
-
-const prod_link = new HttpLink({
-  uri: `${process.env.PUBLIC_URL}/graphql`
-});
-
 const link = (process.env.NODE_ENV === 'development')?dev_link:prod_link;
-
 const client = new ApolloClient({
   cache,
   link

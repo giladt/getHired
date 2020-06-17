@@ -9,16 +9,21 @@ var environment = app.get('env');
 
 app.set('view engine', 'react');
 
-app.use('/graphql', graphqlHTTP({
+if(environment === 'development'){
+  console.log('Starting development server using cors.');
+  var cors = require('cors');
+  app.use(cors());
+}
+
+app.use('/api', graphqlHTTP({
   schema,
-  graphiql: false
+  graphiql: true
 }));
 
 if (environment === 'production') {
   app.use(express.static(path.join(__dirname, 'client/build')));
 
-  // The "catchall" handler: for any request that doesn't
-  // match one above, send back React's index.html file.
+  // The "catchall" handler: for any request that doesn't match one above, send back React's index.html file.
   app.get('*', (req, res) => {
     res.sendFile(path.join(__dirname+'/client/build/index.html'));
   });
