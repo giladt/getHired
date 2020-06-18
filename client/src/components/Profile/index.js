@@ -22,8 +22,13 @@ class Profile extends React.Component{
       </div>
       );
 
-    if(this.props.employer && this.props.employer.cover_letter){
-      letter = this.props.employer.cover_letter;
+    console.log("EMPLOYER", this.props.employer);
+    let employer = this.props.item.Applications.reduce(item=> { 
+      console.log(item.ref_id, " | ", this.props.employer)
+      return item.ref_id === this.props.employer;
+    });
+    if(employer && employer.cover_letter){
+      letter = employer.cover_letter;
     }
   
     return(

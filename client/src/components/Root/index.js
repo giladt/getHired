@@ -49,11 +49,11 @@ class Root extends React.Component{
               // User exsists
               if(data && data.Candidate && data.Candidate[0]) {
                 // let pos = this.getAddr();
-                console.log('user: ', this.props.user);
                 return(
                   <User 
                     page={this.state.page} 
                     user={this.props.user}
+                    employer={this.props.employer}
                     item={data.Candidate[0]}
                     google={this.props.google} 
                   />

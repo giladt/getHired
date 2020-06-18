@@ -12,7 +12,6 @@ import Portfolio from '../../Portfolio';
 import Timeline from '../../Timeline';
 
 export default (params) => {
-
   let page= params.page;
   let user = params.user;
   let item = params.item;
@@ -21,7 +20,7 @@ export default (params) => {
   let { Skills, Languages} = item;
 
   let routes = [
-    {profile: <Profile item={item} />},
+    {profile: <Profile item={item} employer={params.employer} />},
     {timeline: <Timeline item={item} />},
     {portfolio: <Portfolio item={{Skills,Languages}} />},
     {contact: <Contact item={item} google={google} />}
