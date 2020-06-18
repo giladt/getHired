@@ -2,7 +2,6 @@ const graphql = require('graphql');
 const _ = require('lodash');
 
 const DataSchemas = require('../modules/DataSchemas');
-const DATA = require('../modules/Data');
 
 const {
     Candidate,
@@ -94,8 +93,8 @@ const ApplicationType = new GraphQLObjectType({
     fields: () => ({
         _id: { type: GraphQLID },
         ref_id: { type: GraphQLID },
-        EmployerName: { type: GraphQLString },
-        EmployerAddress: {
+        employer_name: { type: GraphQLString },
+        employer_address: {
             type: AddressType,
             resolve: (parent) => {
                 return Address.findOne({
@@ -299,8 +298,8 @@ const RootQuery = new GraphQLObjectType({
             type: new GraphQLList(ApplicationType),
             args: { id: { type: GraphQLID } },
             resolve: (parent, args) => {
-                let personId = _.first(_.filter(DATA.CANDIDATE, ["ID", args.id])).ID;
-                return _.filter(DATA.APPLICATIONS, ["RefId", personId]);
+                const candidate = Candidate.find({'_id': args.id})[0];
+                return candidate.Applications;
             }
         }
     }
@@ -563,8 +562,7 @@ const Mutation = new GraphQLObjectType({
         AddApplication: {
             type: ApplicationType,
             args: {
-                _id: { type: new GraphQLNonNull(GraphQLID) },
-                ref_id: { type: new GraphQLNonNull(GraphQLString) },
+                ref_id: { type: new GraphQLNonNull(GraphQLID) },
                 employer_name: { type: GraphQLString },
                 role_name: { type: new GraphQLNonNull(GraphQLString) },
                 roll_description: { type: GraphQLString },
