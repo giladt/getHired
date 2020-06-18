@@ -428,7 +428,6 @@ const Mutation = new GraphQLObjectType({
             }
         },
 
-
         AddExperience: {
             type: ExperienceType,
             args: {
@@ -478,23 +477,6 @@ const Mutation = new GraphQLObjectType({
                     description: args.description,
                 });
                 return task.save();
-            }
-        },
-
-        AddSkill: {
-            type: LevelType,
-            args: {
-                ref_id: { type: new GraphQLNonNull(GraphQLID) },
-                name: { type: new GraphQLNonNull(GraphQLString) },
-                level: { type: new GraphQLNonNull(GraphQLInt) },
-            },
-            resolve: (parent, args) => {
-                let skill = new Skill({
-                    ref_id: args.ref_id,
-                    name: args.name,
-                    level: args.level
-                });
-                return skill.save();
             }
         },
 

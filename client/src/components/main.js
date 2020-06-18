@@ -15,7 +15,7 @@ class Main extends Component {
       <div>
         <Route exact path={`/`} component={RootPage} />
 
-        <Route path={`/:user/:page?`}>
+        <Route path={`/:page?/:user`}>
           <Content google={this.props.google} />
         </Route>
       </div>

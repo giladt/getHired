@@ -7,12 +7,12 @@ export default (params) => {
 
   return(
     <section className={styles.content}>
-      <Route exact path={ `${user}` }>
-        <Redirect to={`${user}/profile`} />
+      <Route exact path={ `/${user}` }>
+        <Redirect to={`/profile/${user}`} />
       </Route>
 
       {params.routes.map((route)=>(
-        <Route exact path={ `${user}/${Object.keys(route)[0]}` } key={Object.keys(route)[0]}>
+        <Route exact path={ `/${Object.keys(route)[0]}/${user}` } key={Object.keys(route)[0]}>
           {route[Object.keys(route)[0]]}
         </Route>
         )

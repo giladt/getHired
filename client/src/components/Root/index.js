@@ -51,7 +51,7 @@ class Root extends React.Component{
                 return(
                   <User 
                     page={this.state.page} 
-                    user={'/'+this.props.match.params.user} 
+                    user={this.props.match.params.user} 
                     item={data.Candidate[0]} 
                     google={this.props.google} 
                   />
