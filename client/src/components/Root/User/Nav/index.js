@@ -11,7 +11,7 @@ export default (params) => {
           let key=Object.keys(route)[0];
 
           return (
-          <Link to={ `/${key}/${params.user}`} id={key} key={key} >
+          <Link to={ `/${key}?u=${params.user}&e=${params.employer || ''}`} id={key} key={key} >
             <li className={styles[params.page[key]]}>
               <i title={key.charAt(0).toUpperCase()+ key.slice(1)}><FontAwesomeIcon icon={params.icons[key]} /></i>
             </li>

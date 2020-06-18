@@ -1,7 +1,7 @@
 import React from 'react';
 import { Query } from 'react-apollo';
 import { graphql } from 'react-apollo';
-import { withRouter} from "react-router-dom";
+import { withRouter } from "react-router-dom";
 
 // Queries
 import { GET_CANDIDATE_QL } from '../../queries/queries';
@@ -18,7 +18,7 @@ class Root extends React.Component{
     super(props);
     this.state = {
       page: {[this.props.match.params.page]: 'active'},
-      user: this.props.match.params.user
+      employer: this.props.employer
     };
   }
    
@@ -26,14 +26,14 @@ class Root extends React.Component{
     if(!prevState.page[this.props.match.params.page]){
       this.setState({page:{[this.props.match.params.page]:'active'}});  
     }
-    
   }
 
   render(){
-    if(this.props && this.props.match && this.state.user) {
+
+    if(this.props && this.props.user && this.props.user) {
 
       return(
-        <Query query={GET_CANDIDATE_QL} variables={{id: this.state.user}} >
+        <Query query={GET_CANDIDATE_QL} variables={{id: this.props.user}} >
         {
           ({loading, err, data}) => {
             // Data fetching in progress - Loading page
@@ -49,10 +49,11 @@ class Root extends React.Component{
               // User exsists
               if(data && data.Candidate && data.Candidate[0]) {
                 // let pos = this.getAddr();
+                console.log('user: ', this.props.user);
                 return(
                   <User 
                     page={this.state.page} 
-                    user={this.state.user} 
+                    user={this.props.user}
                     item={data.Candidate[0]}
                     google={this.props.google} 
                   />
