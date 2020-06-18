@@ -17,7 +17,8 @@ class Root extends React.Component{
   constructor(props){
     super(props);
     this.state = {
-      page: {[this.props.match.params.page]: 'active'}
+      page: {[this.props.match.params.page]: 'active'},
+      user: this.props.match.params.user
     };
   }
    
@@ -29,10 +30,10 @@ class Root extends React.Component{
   }
 
   render(){
-    if(this.props && this.props.match && this.props.match.params.user) {
+    if(this.props && this.props.match && this.state.user) {
 
       return(
-        <Query query={GET_CANDIDATE_QL} variables={{id: this.props.match.params.user}} >
+        <Query query={GET_CANDIDATE_QL} variables={{id: this.state.user}} >
         {
           ({loading, err, data}) => {
             // Data fetching in progress - Loading page
@@ -47,11 +48,11 @@ class Root extends React.Component{
 
               // User exsists
               if(data && data.Candidate && data.Candidate[0]) {
-                  // let pos = this.getAddr();
+                // let pos = this.getAddr();
                 return(
                   <User 
                     page={this.state.page} 
-                    user={this.props.match.params.user} 
+                    user={this.state.user} 
                     item={data.Candidate[0]}
                     google={this.props.google} 
                   />
