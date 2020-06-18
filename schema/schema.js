@@ -309,6 +309,7 @@ const RootQuery = new GraphQLObjectType({
 const Mutation = new GraphQLObjectType({
     name: 'Mutation',
     fields: {
+// candidate
         AddCandidate: {
             type: CandidateType,
             args: {
@@ -331,7 +332,7 @@ const Mutation = new GraphQLObjectType({
                 return candidate.save();
             }
         },
-
+// contact
         AddContactDetail: {
             type: ContactDetailType,
             args: {
@@ -350,7 +351,7 @@ const Mutation = new GraphQLObjectType({
                 return contact_detail.save();
             }
         },
-
+// education
         AddEducation: {
             type: EducationType,
             args: {
@@ -379,7 +380,7 @@ const Mutation = new GraphQLObjectType({
                 return education.save();
             }
         },
-
+// address
         AddAddress: {
             type: AddressType,
             args: {
@@ -427,7 +428,7 @@ const Mutation = new GraphQLObjectType({
                 });
             }
         },
-
+// experience
         AddExperience: {
             type: ExperienceType,
             args: {
@@ -479,7 +480,7 @@ const Mutation = new GraphQLObjectType({
                 return task.save();
             }
         },
-
+// scale
         UpdateScale: {
             type: LevelType,
             args: {
@@ -556,6 +557,34 @@ const Mutation = new GraphQLObjectType({
                     default:
                         return null;
                 }
+            }
+        },
+
+        AddApplication: {
+            type: ApplicationType,
+            args: {
+                _id: { type: new GraphQLNonNull(GraphQLID) },
+                ref_id: { type: new GraphQLNonNull(GraphQLString) },
+                employer_name: { type: GraphQLString },
+                role_name: { type: new GraphQLNonNull(GraphQLString) },
+                roll_description: { type: GraphQLString },
+                contact_name: { type: new GraphQLNonNull(GraphQLString) },
+                website_url: { type: GraphQLString },
+                openning_url: { type: GraphQLString },
+                cover_letter: { type: new GraphQLNonNull(GraphQLString) }
+            },
+            resolve: (parent, args) => {
+                let application = new Application({
+                    ref_id: args.ref_id,
+                    employer_name: args.employer_name,
+                    role_name: args.role_name,
+                    roll_description: args.roll_description,
+                    contact_name: args.contact_name,
+                    website_url: args.website_url,
+                    openning_url: args.openning_url,
+                    cover_letter: args.cover_letter
+                });
+                return application.save();
             }
         }
     }
