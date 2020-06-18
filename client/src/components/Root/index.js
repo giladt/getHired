@@ -52,7 +52,7 @@ class Root extends React.Component{
                   <User 
                     page={this.state.page} 
                     user={this.props.match.params.user} 
-                    item={data.Candidate[0]} 
+                    item={data.Candidate[0]}
                     google={this.props.google} 
                   />
                 )

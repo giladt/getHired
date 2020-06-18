@@ -111,8 +111,8 @@ const GET_CANDIDATE_QL = gql `
       Applications{
         _id
         ref_id
-        EmployerName
-        EmployerAddress{
+        employer_name
+        employer_address{
           _id
           ref_id
           street
@@ -357,8 +357,8 @@ query ReadInfo {
     Applications{
       _id
       ref_id
-      EmployerName
-      EmployerAddress{
+      employer_name
+      employer_address{
         _id
         ref_id
         street

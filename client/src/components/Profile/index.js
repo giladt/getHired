@@ -22,6 +22,10 @@ class Profile extends React.Component{
       </div>
       );
 
+    if(this.props.employer && this.props.employer.cover_letter){
+      letter = this.props.employer.cover_letter;
+    }
+  
     return(
       <article className="profile">
         <h1>Profile</h1>
