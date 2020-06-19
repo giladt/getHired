@@ -1,0 +1,15 @@
+:local(.profile a),
+:local(.profile span) {
+    color: var(--link-fg);
+    font-weight: bolder;
+}
+
+:local(.profile a) {
+    text-decoration: none;
+    border-bottom: 1px dotted var(--link-fg);
+}
+
+:local(.profile a:hover) {
+    color: var(--main-theme);
+    border-bottom-style: double;
+}

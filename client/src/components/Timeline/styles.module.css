@@ -11,11 +11,11 @@
         --page-bg: rgb(31, 34, 35);
         --main-bg: rgb(36, 39, 40);
         /* cornflowerblue */
-        --main-fg-theme: rgba(100, 149, 247, 1);
         --main-bg-25: rgba(0, 0, 0, 0.25);
         --main-bg-30: rgba(0, 0, 0, 0.3);
         --main-bg-50: rgba(36, 39, 40, 0.85);
-        --main-fg-theme: rgba(100, 149, 247, 0.75);
+        --main-theme-fg-75: rgba(100, 149, 247, 0.75);
+        --main-theme-fg-100: rgba(100, 149, 247, 1);
         --scrollbar-thumb-piece: rgba(64, 64, 64, 0.5);
         --scrollbar-outline: slategrey;
         /* cornflowerblue */
@@ -24,6 +24,7 @@
         --sub-header: rgb(163, 192, 248);
         --scale-bar-bg: rgba(64, 64, 64, 0.5);
         --scale-bar-fg: rgba(100, 149, 247, 1);
+        --link-fg: beige;
     }
 }
 
@@ -35,7 +36,7 @@
         /* white */
         --main-fg: rgb(24, 30, 32);
         /* cornflowerblue */
-        --main-fg-theme: rgba(100, 149, 247, 1);
+        --main-theme-fg-100: rgba(100, 149, 247, 1);
         --main-bg-25: rgba(255, 255, 255, 0.25);
         --main-bg-30: rgba(255, 255, 255, 0.3);
         --main-bg-50: rgba(100, 100, 100, 0.85);
