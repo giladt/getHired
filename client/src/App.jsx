@@ -7,7 +7,7 @@ import {
   Switch,
 } from "react-router-dom";
 
-import Main from './components/main.js';
+import Main from './components/main.jsx';
 import './App.css';
 
 const dev_link = new HttpLink({uri: `http://localhost:4000/api`});

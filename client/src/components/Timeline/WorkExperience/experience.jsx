@@ -1,21 +1,50 @@
 import React from 'react';
 import Moment from 'react-moment';
-import styles from './styles.module.css';
+import styles from './experience.module.css';
 
 // Components
 
+// Interfaces
+
+interface Address {
+  street: string,
+  house_number: string,
+  city: string,
+  state: string,
+  country: string,
+  postal_code: number
+}
+
+interface Task extends Array<Task>{
+  description: string
+}
+
+interface Roll extends Array<Roll>{
+  title: string,
+  start_date: string,
+  end_date: string,
+  tasks: Task
+}
+
+interface Item {
+  employer_address: Address,
+  employer_name: string,
+  rolls: Roll
+}
+
 class WorkExperience extends React.Component {
   render(){
-    let experience = this.props.experience;
+    const props:any = this.props;
+    const experience:any = props.experience;
 
     if(experience.length > 0){
       return(
         <div className="experience">
-          { experience.map((item, idx) => {
+          { experience.map((item:Item, idx:number) => {
             
-            const i_address = (item.employer_address) && item.employer_address;
-            const i_a_city = (i_address && i_address.city && i_address.city.length > 0)? i_address.city: '';
-            const i_a_country = (i_address && i_address.country && i_address.country.length > 0)? i_address.country: '';
+            const i_address:Address = (item.employer_address) && item.employer_address;
+            const i_a_city:string = (i_address && i_address.city && i_address.city.length > 0)? i_address.city: '';
+            const i_a_country:string = (i_address && i_address.country && i_address.country.length > 0)? i_address.country: '';
 
             return (
               <div key={idx}>
@@ -23,8 +52,8 @@ class WorkExperience extends React.Component {
                 <div className={styles.rolls}>
                 { (item.rolls && item.rolls.length > 0)?
                   item.rolls.map((r, idx) => {
-                    let startDate = parseInt(r.start_date);
-                    let endDate = parseInt(r.end_date);
+                    const startDate:number = parseInt(r.start_date);
+                    const endDate:number = parseInt(r.end_date);
                     return (
                       <div className={styles.roll} key={idx}>
                         <h4><small><Moment format="MM/YYYY" date={startDate} /> - <Moment format="MM/YYYY" date={endDate} /></small><br/>{r.title}</h4>

@@ -1,6 +1,6 @@
 import React from 'react';
 import { Mutation } from '@apollo/react-components';
-import UpdateScaleForm from './scale_update_form';
+import UpdateScaleForm from './scale_update_form.jsx';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEdit, faSave, faWindowClose } from '@fortawesome/free-regular-svg-icons';
 
@@ -11,60 +11,65 @@ import { UPDATE_SCALE, ADD_SCALE } from '../../../queries/queries';
 import Bars from './scale_bars';
 
 class Scale extends React.Component{
-  constructor(props){
+  constructor(props:any){
     super(props);
 
     this.state = {
       items: [...props.items],
-      visible: false
+      visible: false,
+      
+      level_scale:{
+        skills: [
+          'Fundamental Awareness',
+          'Novice',
+          'Intermediate',
+          'Advanced',
+          'Expert'
+        ],
+        languages: [
+          'Elementary Proficiency',
+          'Limited Working Proficiency',
+          'Professional Working Proficiency',
+          'Full Professional Proficiency',
+          'Native / Bilingual Proficiency'
+        ]
+      }
     };
-
-    this.level_scale ={
-      skills: [
-        'Fundamental Awareness',
-        'Novice',
-        'Intermediate',
-        'Advanced',
-        'Expert'
-      ],
-      languages: [
-        'Elementary Proficiency',
-        'Limited Working Proficiency',
-        'Professional Working Proficiency',
-        'Full Professional Proficiency',
-        'Native / Bilingual Proficiency'
-      ]
-    }
-
+    
     this.toggleEdit = this.toggleEdit.bind(this);
     this.updateState = this.updateState.bind(this);
   }
 
-  toggleEdit(val = null, newState = null) {
+  toggleEdit(val:any = null, newState:any = null) {
+    let state:any = this.state;
+
     if(newState !== null){
       this.setState({items: newState});
       this.setState({data: newState});
     } else {      
-      this.setState({data: this.state.items});
+      this.setState({data: state.items});
     };
 
 
     (typeof val == 'boolean') 
       ? this.setState({visible: val})
-      : this.setState({visible: !this.state.visible});
+      : this.setState({visible: !state.visible});
   }
   
-  updateState(new_item) {
+  updateState(new_item:any) {
+    let state:any = this.state;
     console.log('NEW ITEM UPDATE STATE',new_item)
     this.setState({
-      data: [...this.state.data, new_item],
+      data: [...state.data, new_item],
       visible: false
     });
-    this.toggleEdit(true, this.state.data);
+    this.toggleEdit(true, state.data);
   }
 
-  handleChange(update_scale, e) {
+  handleChange(update_scale:any, e:any) {
     let value;
+    let state:any = this.state;
+    const props:any = this.props;
 
     console.log('EVENT', e.target);
     console.log('MUTATION', update_scale);
@@ -81,29 +86,29 @@ class Scale extends React.Component{
 
     const id = parseInt(e.target.id);
 
-    let items = [...this.state.data];
+    let items = [...state.data];
     items[id]= {...items[e.target.id], [e.target.name]: value};
     
     if(e.target.type === 'submit'){
       // Update data and close edit mode
-      this.state.data.map(item => 
+      state.data.map((item:any) => 
         // mutate UPDATE_SCALE
         update_scale({
           variables: {
-            table: this.props.title,
+            table: props.title,
             _id: item._id,
             name: item.name,
-            data: this.props.items,
+            data: props.items,
             level: parseInt(item.level)
           }
         })
-        .then(res => {
-          this.toggleEdit(false, this.state.data);
+        .then((res:any) => {
+          this.toggleEdit(false, state.data);
           return res;
         })
-        .catch(err => console.error('UPDATE_SCALE Mutation Error:', err))
+        .catch((err:any) => console.error('UPDATE_SCALE Mutation Error:', err))
       )
-      this.toggleEdit(false, this.state.data);
+      this.toggleEdit(false, state.data);
     } else {
       // Update change to scale items
       console.log('ADD ITEM');
@@ -115,21 +120,24 @@ class Scale extends React.Component{
   }
 
   render(){
-    if(this.state.items && this.state.items.length > 0) {
+    let state:any = this.state;
+    let props:any = this.props;
+
+    if(state.items && state.items.length > 0) {
       return (
-        <Mutation mutation={UPDATE_SCALE} key={ this.state.items._id } >
-            {update_scale => (
-              <Mutation mutation={ADD_SCALE} key={this.state.items._id+'new'} >
-                  {add_scale => (
-                  <article className={this.props.title.toLowerCase()}>
-                    <h3>{this.props.title}</h3>
-                    {!this.state.visible
+        <Mutation mutation={UPDATE_SCALE} key={ state.items._id } >
+            {(update_scale:any) => (
+              <Mutation mutation={ADD_SCALE} key={state.items._id+'new'} >
+                  {(add_scale:any) => (
+                  <article className={props.title.toLowerCase()}>
+                    <h3>{props.title}</h3>
+                    {!state.visible
                     ? <ul>
-                      {this.state.items.map(
-                        ( item ,idx ) => (
+                      {state.items.map(
+                        ( item:any ,idx:any ) => (
                           <Bars 
                             item={item} 
-                            scale_idx={this.level_scale[this.props.title.toLowerCase()]} 
+                            scale_idx={state.level_scale[props.title.toLowerCase()]} 
                             key={idx}
                           />
                         )
@@ -138,19 +146,19 @@ class Scale extends React.Component{
                     : <UpdateScaleForm 
                         add_scale={add_scale}
                         update_scale={update_scale}
-                        styleName={this.props.styleName}
-                        data={this.state.data}
-                        table={this.props.title}
+                        styleName={props.styleName}
+                        data={state.data}
+                        table={props.title}
                         handleChange={this.handleChange.bind(this, update_scale)}
                         updateState={this.updateState}
                         toggleEdit={this.toggleEdit}
-                        scale_idx={this.level_scale[this.props.title.toLowerCase()]} 
-                        ref_id={this.props.ref_id}
+                        scale_idx={state.level_scale[props.title.toLowerCase()]} 
+                        ref_id={props.ref_id}
                       />
                     }
-                    {!this.state.visible
+                    {!state.visible
                     ? <div className='buttons'>
-                        <button type="button" text={`Edit ${this.props.title}`} onClick={this.toggleEdit}>
+                        <button type="button" text={`Edit ${props.title}`} onClick={this.toggleEdit}>
                           <FontAwesomeIcon icon={faEdit} size='2x' />
                         </button>
                       </div>

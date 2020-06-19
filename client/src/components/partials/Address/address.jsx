@@ -2,9 +2,9 @@ import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEnvelope } from '@fortawesome/free-solid-svg-icons';
 
-class Address extends React.Component{
+class Address extends React.Component<any>{
 
-  constructor(props){
+  constructor(props:any){
     super(props);
 
     let {_id, ref_id, street, house_no, city, state, country, postal_code} = props._for;
@@ -16,32 +16,35 @@ class Address extends React.Component{
   }
 
   componentDidMount() {
+    let state:any = this.state
+    
     this.setState({
       data: {
-        ...this.state.data,
+        ...state.data,
         'ref_id': this.props._for._id
       }
     });
   }
 
   render(){
-    if(this.state.data._id){
+    let state:any = this.state
+    if(state.data._id){
       return(
         <article className="address">
           <div className='icon'>
           <FontAwesomeIcon color='cornflowerblue' icon={faEnvelope} size='2x' />
           </div>
           <div>
-            {this.state.data.street} {this.state.data.house_no},&nbsp;
-            {this.state.data.postal_code ? this.state.data.postal_code : ''}
-            {this.state.data.city && this.state.data.city.length > 0 
-                ? ' ' + this.state.data.city
+            {state.data.street} {state.data.house_no},&nbsp;
+            {state.data.postal_code ? state.data.postal_code : ''}
+            {state.data.city && state.data.city.length > 0 
+                ? ' ' + state.data.city
                 : ''}
-            {this.state.data.city !== this.state.data.state && this.state.data.state.length > 0 
-              ? ',\n' + this.state.data.state
+            {state.data.city !== state.data.state && state.data.state.length > 0 
+              ? ',\n' + state.data.state
               : '\n'}
-            {this.state.data.country && this.state.data.country.length > 0 
-              ? !this.state.data.state ? ', ':'' + this.state.data.country 
+            {state.data.country && state.data.country.length > 0 
+              ? !state.data.state ? ', ':'' + state.data.country 
               : ''}
           </div>
         </article>
@@ -93,40 +96,40 @@ class Address extends React.Component{
 
   toggleEdit(val = null) {
     this.setState({
-      visible: val || !this.state.visible
+      visible: val || !state.visible
     });
   }
   
   componentDidMount() {
     this.setState({
       data: {
-        ...this.state.data,
+        ...state.data,
         'ref_id': this.props._for._id
       }
     });
   }
 
   render(){
-    if(this.state.data._id){
+    if(state.data._id){
       return(
           
         // Toggle edit mode for address
-        !this.state.visible 
+        !state.visible 
         ? <article className="address">
             <FontAwesomeIcon icon={faMapMarkerAlt} size='lg' />
-            <div>{this.state.data.street} {this.state.data.house_no},&nbsp;
-              {this.state.data.postal_code ? this.state.data.postal_code : ''}
-              {this.state.data.city && this.state.data.city.length > 0 
-                  ? ' ' + this.state.data.city
+            <div>{state.data.street} {state.data.house_no},&nbsp;
+              {state.data.postal_code ? state.data.postal_code : ''}
+              {state.data.city && state.data.city.length > 0 
+                  ? ' ' + state.data.city
                   : ''}
-              {this.state.data.city !== this.state.data.state && this.state.data.state.length > 0 
-                ? ',\n' + this.state.data.state
+              {state.data.city !== state.data.state && state.data.state.length > 0 
+                ? ',\n' + state.data.state
                 : '\n'}
-              {this.state.data.country && this.state.data.country.length > 0 
-                ? !this.state.data.state ? ', ':'' + this.state.data.country 
+              {state.data.country && state.data.country.length > 0 
+                ? !state.data.state ? ', ':'' + state.data.country 
                 : ''}
             </div>
-            {!this.state.hideButton 
+            {!state.hideButton 
             ? <button type="button" text='Edit address' onClick={this.toggleEdit}>
                 <FontAwesomeIcon icon={faEdit} size='2x' />
               </button>
@@ -134,7 +137,7 @@ class Address extends React.Component{
             }
           </article>
         : <UpdateAddressForm 
-            data={this.state.data}
+            data={state.data}
             handleUpdate={this.handleUpdate}
             onCancel={this.handleCancelClick}
             toggleEdit={this.toggleEdit} 

@@ -2,8 +2,18 @@ import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faMobile, faPhone, faPencilAlt, faAt } from '@fortawesome/free-solid-svg-icons';
 
-class List extends React.Component{
-  constructor(props){
+interface Detail extends Array<Detail>{
+  type: string,
+  value: number
+}
+
+interface Props {
+  details: Detail,
+  title: string
+}
+
+class List extends React.Component<Props>{
+  constructor(props:Props){
     super(props);
 
     this.state = {
@@ -48,54 +58,3 @@ class List extends React.Component{
 };
 
 export default List;
-
-/* OLD with button
-
-import React from 'react';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faEdit, faWindowClose } from '@fortawesome/free-regular-svg-icons';
-
-class List extends React.Component{
-  constructor(props){
-    super(props);
-
-    this.state = {
-      items: [...props.details],
-      visible: false
-    };
-  }
-
-  render(){
-    let details = this.props.details;
-    return (
-        (details.length > 0) ? (
-          <article className = 'list'>
-            {this.props.title
-            ? <h3>{this.props.title}</h3>
-            :''
-            }
-            <ul>
-              {details.map((item,idx) => {
-                return(
-                  <li key={idx}>
-                    {item.type}: <strong>{item.value}</strong>
-                  </li>
-                )
-              })}
-            </ul>
-            {!this.state.visible
-          ? <button type="button" text="Edit scale" onClick={this.toggleEdit}>
-              <FontAwesomeIcon icon={faEdit} size='2x' />
-            </button>
-          : <button type="button" text="Edit scale" onClick={this.toggleEdit}>
-              <FontAwesomeIcon icon={faWindowClose} size='2x' />
-            </button>
-          }
-          </article>
-        ) : <article></article>
-    )
-  };
-};
-
-export default List;
-*/

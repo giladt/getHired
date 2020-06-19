@@ -1,5 +1,5 @@
 import React from 'react';
-import styles from './styles.module.css';
+import styles from './portfolio.module.css';
 
 export default (params) => {
   let skills = params.item.Skills && params.item.Skills.length > 0 ? params.item.Skills.sort((a,b) => {return b.level - a.level;}): undefined;

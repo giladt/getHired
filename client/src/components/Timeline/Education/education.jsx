@@ -1,11 +1,37 @@
 import React from 'react';
 import Moment from 'react-moment';
-import styles from './styles.module.css';
-export default (params) => {
+
+// Components
+import styles from './education.module.css';
+
+interface Address {
+  street: string,
+  house_number: string,
+  city: string,
+  state: string,
+  country: string,
+  postal_code: number
+}
+
+interface Education {
+  _id: string,
+  start_date: string,
+  graduation_date: string,
+  institution_address: Address,
+  institution_name: string,
+  studies_subject: string,
+  degree_achived: string
+}
+
+interface Props {
+  education: Array<Education>
+}
+
+export default (props: Props) => {
   return(
     <div>
-    {(params.education && params.education.length > 0)?
-      params.education.map(item=>{
+    {(props.education && props.education.length > 0)?
+      props.education.map(item=>{
         const s_date = parseInt(item.start_date);
         const g_date = parseInt(item.graduation_date);
         const i_address = (item.institution_address) && item.institution_address;

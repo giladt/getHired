@@ -2,14 +2,14 @@ import React from 'react';
 import { faUserAstronaut, faPaintBrush, faAddressBook, faScroll } from '@fortawesome/free-solid-svg-icons';
 
 // Components
-import Content from './Content';
-import Nav from './Nav';
-import Picture from './Picture';
+import Content from './Content/content.jsx';
+import Nav from './Nav/nav.jsx';
+import Picture from './Picture/picture.jsx';
 
-import Profile from '../../Profile';
-import Contact from '../../Contacts';
-import Portfolio from '../../Portfolio';
-import Timeline from '../../Timeline';
+import Profile from '../../Profile/profile.jsx';
+import Contact from '../../Contacts/contact_details.jsx';
+import Portfolio from '../../Portfolio/portfolio.jsx';
+import Timeline from '../../Timeline/timeline.jsx';
 
 export default (params) => {
   let page= params.page;
@@ -35,7 +35,7 @@ export default (params) => {
 
   return (
     <main>
-      <Nav user={user} page={page} routes={routes} icons={icons} />
+      <Nav user={user} page={page} employer={params.employer} routes={routes} icons={icons} />
 
       <Picture user={user} item={item} />
       <Content user={user} page={page} routes={routes} item={item} google={google} />

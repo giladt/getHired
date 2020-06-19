@@ -1,8 +1,15 @@
 import React from 'react';
 import { Route, Redirect } from "react-router-dom";
-import styles from './styles.module.css';
+import styles from './content.module.css';
 
-export default (params) => {
+interface Params {
+  user: string,
+  employer: string,
+  routes: Array<any>
+}
+
+
+export default (params: Params) => {
   let user = params.user || '';
   let employer = params.employer || '';
 

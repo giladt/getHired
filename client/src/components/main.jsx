@@ -6,8 +6,8 @@ import {
 } from "react-router-dom";
 
 // Components
-import Content from './Root/';
-import RootPage from './Root/root';
+import Content from './Root/root_app.jsx';
+import RootPage from './Root/root_static.jsx';
 
 let Main = (params) => {
   function useQuery() {

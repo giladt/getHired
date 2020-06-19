@@ -1,17 +1,20 @@
-import React from 'react';
+import React, { EventHandler } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSave, faPlusSquare, faTrashAlt } from '@fortawesome/free-regular-svg-icons';
+
 import { Mutation } from 'react-apollo';
 import { DELETE_SCALE } from '../../../queries/queries';
 
 class ScaleBar extends React.Component{
   
-  hoverLabelStyle(item){
+  hoverLabelStyle(item:any){
+    const props:any = this.props;
+
     return (
     <style>
       {`
         #el${item}:hover::after{
-          content: '${[...this.props.scale_idx][item - 1]}';
+          content: '${[...props.scale_idx][item - 1]}';
         }
       `}
     </style>
@@ -19,30 +22,30 @@ class ScaleBar extends React.Component{
   };
 
   render(){
-    let scaleElements = [1,2,3,4,5];
-    
+    const scaleElements = [1,2,3,4,5];
+    const props:any = this.props;
 
     return(
       <div>
-        {scaleElements.map((item) => {
-          let className = (parseInt(this.props.value) === parseInt(item))
+        {scaleElements.map((item:any) => {
+          const className = (parseInt(props.value) === parseInt(item))
                           ? 'el checked'
                           :'el';
           return (
             <label 
-              key={item} 
-              type='number'
+              key={parseInt(item)} 
+              /*type='number'*/
               className={className}
-              id={`el${item}`}
+              id={`el${parseInt(item)}`}
             >
-              {this.hoverLabelStyle(item)}
+              {this.hoverLabelStyle(parseInt(item))}
               <input 
                 name='level' 
-                id={this.props.id}
-                checked={this.props.value === item} 
-                value={item}
+                id={props.id}
+                checked={props.value === parseInt(item)}
+                value={parseInt(item)}
                 type='radio' 
-                onChange={this.props.handleChange}
+                onChange={props.handleChange}
               />
             </label>
           )
@@ -53,7 +56,7 @@ class ScaleBar extends React.Component{
 }
 
 class UpdateScaleForm extends React.Component{
-  constructor(props){
+  constructor(props:any){
     super(props);
     this.state = {
       visible: false,
@@ -67,12 +70,14 @@ class UpdateScaleForm extends React.Component{
     this.handleChange = this.handleChange.bind(this);
  }
 
-  toggleNewScale(e) {
+  toggleNewScale(e:Event) {
     e.preventDefault();
-    this.setState({visible: !this.state.visible});
+    const state:any = this.state;
+    this.setState({visible: !state.visible});
   }
 
-  handleChange(e) {
+  handleChange(e:any) {
+    const state:any = this.state;
     let value;
     switch(e.target.type){
       case 'radio':
@@ -88,62 +93,66 @@ class UpdateScaleForm extends React.Component{
 
     if(id === 999){
       this.setState({
-        new_item: {...this.state.new_item, [e.target.name]: value}
+        new_item: {...state.new_item, [e.target.name]: value}
       })
     }
   }
 
-  handleDelete(delete_scale, e) {
+  handleDelete(delete_scale:any, e:any) {
     e.preventDefault();
-    let id = e.target.id;
+    const id:any = e.target.id;
+    const props:any = this.props;
 
     delete_scale({
       variables: {
-        table: this.props.table,
+        table: props.table,
         _id: id
       }
-    }).then(res => {
+    }).then((res:any) => {
       console.log("DELETE_SCALE:", res.data.DeleteScale._id);
-      let data = [...this.props.data].filter(item => item._id !== res.data.DeleteScale._id);
-      this.props.toggleEdit(true, data);
+      let data = [...props.data].filter(item => item._id !== res.data.DeleteScale._id);
+      props.toggleEdit(true, data);
       return res;
     })
-    .catch(err => console.error('DELETE_SCALE Mutation Error:', err));
+    .catch((err:any) => console.error('DELETE_SCALE Mutation Error:', err));
   }
 
   render(){
+    const state:any = this.state;
+    const props:any = this.props;
+
     return (
       <Mutation mutation={DELETE_SCALE} >
-      {delete_scale=>(
+      {(delete_scale:any)=>(
       <form onSubmit={(e)=>{ 
         console.log('Submitting newly added scale item.');
         e.preventDefault();
         if(
-            this.state.visible && 
-            this.state.new_item &&
-            this.state.new_item.name &&
-            this.state.new_item.name.length > 1 &&
-            this.state.new_item.level &&
-            this.state.new_item.level > 0
+            state.visible && 
+            state.new_item &&
+            state.new_item.name &&
+            state.new_item.name.length > 1 &&
+            state.new_item.level &&
+            state.new_item.level > 0
           ){
           // mutate ADD_SCALE
-            this.props.add_scale({
+            props.add_scale({
               variables: {
-                table: this.props.table,
-                ref_id: this.props.ref_id,
-                name: this.state.new_item.name,
-                level: parseInt(this.state.new_item.level)
+                table: props.table,
+                ref_id: props.ref_id,
+                name: state.new_item.name,
+                level: parseInt(state.new_item.level)
               }
-            }).then((res) => {
-              this.props.updateState(res.data.AddScale);
+            }).then((res:any) => {
+              props.updateState(res.data.AddScale);
               return res;
             })
-            .catch(err => console.error('ADD_SCALE | Mutation Error:', err))
+            .catch((err:any) => console.error('ADD_SCALE | Mutation Error:', err))
         } else {
           console.warn('Fields are not allowed to be empty. Please fill all fields and try again.');
         }
         }}>
-          {this.props.data.map((item, idx) =>
+          {props.data.map((item:any, idx:number) =>
             {let id;
                 (!item._id) ? id = idx+1 : id = item._id;
                 return(
@@ -152,18 +161,18 @@ class UpdateScaleForm extends React.Component{
                       name="name" 
                       alt="Name" 
                       type="text" 
-                      id={idx} 
+                      id={idx.toString()} 
                       value={ item.name } 
-                      onChange={ this.props.handleChange } 
+                      onChange={ props.handleChange } 
                     />
                     <ScaleBar 
-                      name="level" 
+                      name="level"
                       alt="Level" 
                       type="number" 
                       id={idx} 
-                      scale_idx={this.props.scale_idx}
+                      scale_idx={props.scale_idx}
                       value={ item.level }
-                      handleChange={ this.props.handleChange } 
+                      handleChange={ props.handleChange } 
                     />
                         <button 
                           className='deleteButton sm'
@@ -177,13 +186,13 @@ class UpdateScaleForm extends React.Component{
                 )
               }
             )}
-            {!this.state.visible
-            ? <BtnAddItem data={this.props.data} text={this.props.table} clickEvent={this.toggleNewScale} />
+            {!state.visible
+            ? <BtnAddItem data={props.data} text={props.table} clickEvent={this.toggleNewScale} />
             : <BtnSaveDiscard 
-                data={this.props.data} 
-                text={this.props.table} 
-                new_item={this.state.new_item} 
-                idx={this.props.scale_idx} 
+                data={props.data} 
+                text={props.table} 
+                new_item={state.new_item} 
+                idx={props.scale_idx} 
                 eventHandler={this.handleChange} 
                 />
             }
@@ -196,9 +205,11 @@ class UpdateScaleForm extends React.Component{
 
 class BtnAddItem extends React.Component {
   render(){
+    const props:any = this.props;
+
     return(
-      <div key={this.props.data.length}>
-        <button type="button" text={`Add new ${this.props.text}`} onClick={this.props.clickEvent}>
+      <div key={props.data.length}>
+        <button type="button" text={`Add new ${props.text}`} onClick={props.clickEvent}>
           <FontAwesomeIcon icon={faPlusSquare} size='2x' />
         </button>
       </div>      
@@ -208,26 +219,28 @@ class BtnAddItem extends React.Component {
 
 class BtnSaveDiscard extends React.Component {
   render(){
+    const props:any = this.props;
+
     return(
-      <div key={this.props.data.length-1} className='button'>
+      <div key={props.data.length-1} className='button'>
         <input 
           name="name" 
           alt="Name" 
           type="text" 
-          id={999} 
-          value={ this.props.new_item.name }
-          onChange={ this.props.eventHandler } 
+          id={999}
+          value={ props.new_item.name }
+          onChange={ props.eventHandler } 
         />
         <ScaleBar 
           name="level" 
           alt="Level" 
           type="number" 
           id={999} 
-          value={this.props.new_item.level}
-          scale_idx={this.props.idx}
-          handleChange={ this.props.eventHandler } 
+          value={props.new_item.level}
+          scale_idx={props.idx}
+          handleChange={ props.eventHandler } 
         />
-        <button type="submit" text={`Save new ${this.props.text}`} onClick={this.props.clickEvent} >
+        <button type="submit" text={`Save new ${props.text}`} onClick={props.clickEvent} >
           <FontAwesomeIcon icon={faSave} size='2x' />
         </button>
       </div>      

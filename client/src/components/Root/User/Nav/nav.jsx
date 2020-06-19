@@ -1,14 +1,22 @@
 import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Link } from "react-router-dom";
-import styles from './styles.module.css';
+import styles from './nav.module.css';
 
-export default (params) => {
+interface Params {
+  routes: Array<any>,
+  icons: Array<any>,
+  page: Array<any>,
+  user: string,
+  employer: string
+}
+
+export default (params: Params) => {
   return(
     <nav className={styles.nav}>
       <ul>
         {params.routes.map(route =>{
-          let key=Object.keys(route)[0];
+          const key:any = Object.keys(route)[0];
 
           return (
           <Link to={ `/${key}?u=${params.user}&e=${params.employer || ''}`} id={key} key={key} >

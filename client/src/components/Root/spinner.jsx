@@ -6,7 +6,7 @@ export default (params) => {
   return(
     <main>
       <section className='loading'>
-        <span><FontAwesomeIcon  icon={faSpinner} spin size='1x'/> Setting up...</span>
+        <span><FontAwesomeIcon  icon={faSpinner} spin size='1x'/> Making this job done...</span>
       </section>
     </main>
   )

@@ -1,9 +1,9 @@
 import React from 'react';
 import { Map, Marker } from 'google-maps-react';
-import MapStyles from '../partials/Styles';
+import MapStyles from './map_styles';
 
-import Address from '../partials/Address';
-import List from '../partials/List';
+import Address from '../partials/Address/address.jsx';
+import List from '../partials/List/list.jsx';
 
 class Contact extends React.Component{
   constructor(props){

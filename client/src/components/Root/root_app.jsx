@@ -7,11 +7,9 @@ import { withRouter } from "react-router-dom";
 import { GET_CANDIDATE_QL } from '../../queries/queries';
 
 // Components
-import User from './User';
-import Spinner from './spinner';
-import styles from './styles.module.css';
-
-//import styles from './styles.module.css';
+import User from './User/user.jsx';
+import Spinner from './spinner.jsx';
+import styles from './root_static.module.css';
 
 class Root extends React.Component{
   constructor(props){
