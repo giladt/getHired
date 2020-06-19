@@ -18,7 +18,7 @@ class Contact extends React.Component{
     return(
       <article className="contact">
         <h1>Contact me</h1>
-        <p>If you have any questions, please do not hesitate to contact at the below-mentioned contact channels.</p>
+        <p>If you have any questions, please do not hesitate to contact via the below-mentioned contact channels.</p>
         <div className="map-container">
           <Map
             className="map"
