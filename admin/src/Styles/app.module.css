@@ -1,0 +1,101 @@
+@import url('https://fonts.googleapis.com/css2?family=Comfortaa:wght@300;700&family=Podkova:wght@400;800&display=swap');
+@media (prefers-color-scheme: no-preference) {
+     :root {}
+}
+
+@media (prefers-color-scheme: dark) {
+     :root {
+        --body-bg: rgb(24, 30, 32);
+        /* white */
+        --main-fg: rgba(255, 255, 255, 1);
+        --page-bg: rgb(31, 34, 35);
+        --main-bg: rgb(36, 39, 40);
+        /* cornflowerblue */
+        --main-bg-25: rgba(0, 0, 0, 0.25);
+        --main-bg-30: rgba(0, 0, 0, 0.3);
+        --main-bg-50: rgba(36, 39, 40, 0.85);
+        --main-theme-fg-75: rgba(100, 149, 247, 0.75);
+        --main-theme-fg-100: rgba(100, 149, 247, 1);
+        --scrollbar-thumb: rgba(100, 149, 247, 0.75);
+        --scrollbar-thumb-piece: rgba(64, 64, 64, 0.5);
+        --scrollbar-outline: slategrey;
+        /* cornflowerblue */
+        --border-fg: rgba(100, 149, 247, 1);
+        --border-bg: rgb(24, 30, 32);
+        --sub-header: rgb(163, 192, 248);
+        --scale-bar-bg: rgba(64, 64, 64, 0.5);
+        --scale-bar-fg: rgba(100, 149, 247, 1);
+        --link-fg: beige;
+        --card-bg: rgb(68, 68, 68);
+        --card-fg: white;
+        --input-bg: rgb(50, 50, 50);
+    }
+}
+
+@media ( prefers-color-scheme: light) {
+     :root {
+        --body-bg: rgba(255, 255, 255, 1);
+        --page-bg: rgb(224, 221, 220);
+        --main-bg: rgb(219, 216, 215);
+        /* white */
+        --main-fg: rgb(24, 30, 32);
+        /* cornflowerblue */
+        --main-bg-25: rgba(255, 255, 255, 0.25);
+        --main-bg-30: rgba(255, 255, 255, 0.3);
+        --main-bg-50: rgba(100, 100, 100, 0.85);
+        --main-theme-fg-75: rgba(100, 149, 247, 0.75);
+        --main-theme-fg-100: rgba(100, 149, 247, 1);
+        --scrollbar-thumb: rgba(100, 149, 247, 0.75);
+        --scrollbar-thumb-piece: rgba(64, 64, 64, 0.5);
+        --scrollbar-outline: red;
+        /*cornflowerblue*/
+        --border-fg: rgba(100, 149, 247, 1);
+        --border-bg: rgb(24, 30, 32);
+        --sub-header: rgb(30, 68, 124);
+        --card-bg: rgb(230, 230, 230);
+        --card-fg: black;
+        --input-bg: white;
+    }
+}
+
+:global(body),
+:global(:root) {
+    background: var(--body-bg);
+    color: var(--main-fg);
+    font-family: 'Comfortaa', cursive;
+    font-size: 16px;
+}
+
+:local(.App>div) {
+    padding: 25vh 20vw;
+}
+
+:local(.Card) {
+    background: var(--card-bg);
+    color: var(--card-fg);
+}
+
+:global(.card-header) {
+    background-color: var(--main-theme-fg-100);
+    color: white;
+}
+
+:global(.form-control),
+:global(.form-control:active) {
+    background-color: var(--input-bg);
+    color: var(--main-fg);
+}
+
+:global(.form-control:hover) {
+    color: var(--main-theme-fg-100);
+}
+
+:global(.form-control:focus) {
+    font-weight: bolder;
+}
+
+:global(.btn.btn-primary) {
+    background-color: var(--main-theme-fg-100);
+    border-color: var(--main-theme-fg-100);
+    color: white;
+}

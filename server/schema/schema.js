@@ -1,6 +1,4 @@
 const graphql = require('graphql');
-const _ = require('lodash');
-
 const DataSchemas = require('../modules/DataSchemas');
 
 const {
@@ -48,8 +46,6 @@ const AddressType = new GraphQLObjectType({
                 })
             })
         }
-        //lat: { type: GraphQLString },
-        //lng: { type: GraphQLString }
     })
 });
 
@@ -283,17 +279,6 @@ const RootQuery = new GraphQLObjectType({
                 return Candidate.find({ '_id': args.id });
             }
         },
-        /*
-        Address: {
-            type: Address,
-            args: {
-                id: { type: GraphQLID }
-            },
-            resolve: (parent, args) => {
-                return Address.find({ '_id': args.id });
-            }
-        },
-        */
         Applications: {
             type: new GraphQLList(ApplicationType),
             args: { id: { type: GraphQLID } },

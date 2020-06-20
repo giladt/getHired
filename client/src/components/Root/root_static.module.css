@@ -24,3 +24,16 @@
     display: inline-block;
     text-shadow: none;
 }
+
+:local(.login) {
+    position: absolute;
+    color: var(--main-fg);
+    width: 5rem;
+    height: 2.5rem;
+    border: 1px solid var(--main-fg);
+    border-radius: 5px;
+    left: calc(100vw - 6rem);
+    top: 1rem;
+    line-height: 2.5rem;
+    text-decoration: none;
+}
