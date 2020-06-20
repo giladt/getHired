@@ -47,6 +47,8 @@ class Root extends React.Component{
               // User exsists
               if(data && data.Candidate && data.Candidate[0]) {
                 // let pos = this.getAddr();
+                document.title = `${data.Candidate[0].first_name} ${data.Candidate[0].last_name}`;
+
                 return(
                   <User 
                     page={this.state.page} 

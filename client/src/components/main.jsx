@@ -8,6 +8,7 @@ import {
 // Components
 import Content from './Root/root_app.jsx';
 import RootPage from './Root/root_static.jsx';
+import styles from './main.module.css';
 
 let Main = (params) => {
   function useQuery() {
@@ -17,7 +18,7 @@ let Main = (params) => {
   let query = useQuery();
 
   return(
-    <div>
+    <div className={styles.main}>
       <Route exact path={`/`} component={RootPage} />
 
       <Route path={`/:page`}>

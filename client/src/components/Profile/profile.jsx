@@ -3,10 +3,6 @@ import styles from './profile.module.css';
 
 class Profile extends React.Component{
 
-  componentDidMount() {
-    document.title = `${this.props.item.first_name} ${this.props.item.last_name}`;
-  }
-  
   render(){
     let letter = (<div></div>);
 
