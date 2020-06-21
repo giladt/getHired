@@ -1,5 +1,4 @@
 import React from 'react';
-
 import Container from 'react-bootstrap/Container'
 import Card from 'react-bootstrap/Card'
 import Row from 'react-bootstrap/Row'
@@ -11,7 +10,7 @@ import Styles from './Styles/app.module.css'
 
 function App() {
   return (
-    <div className={Styles.App}>
+    <div className={Styles.body}>
       <NavBar />
       <Container fluid='lg' className="justify-content-md-center">
         <Card 
