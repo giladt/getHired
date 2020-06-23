@@ -32,7 +32,7 @@ interface Item {
   rolls: Roll
 }
 
-class WorkExperience extends React.Component {
+class WorkExperience extends React.Component<any> {
   render(){
     const props:any = this.props;
     const experience:any = props.experience;

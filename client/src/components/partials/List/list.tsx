@@ -8,8 +8,8 @@ interface Detail extends Array<Detail>{
 }
 
 interface Props {
-  details: Detail,
-  title: string
+  title?: string,
+  details: Detail
 }
 
 class List extends React.Component<Props>{

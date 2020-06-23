@@ -13,14 +13,14 @@
     }
 }
 
-:local(nav) {
+:local(.nav) {
     background-color: var(--main-bg);
     border-radius: 0.5rem 0 0 0.5rem;
     /*border: 1px solid black;*/
     /*margin-right: 0.15rem;*/
 }
 
-:local(nav>ul) {
+:local(.nav>ul) {
     display: grid;
     grid-template-rows: repeat(auto-fill, 3rem);
     grid-gap: 1rem;
@@ -32,26 +32,26 @@
     height: 100%;
 }
 
-:local(nav>ul>a) {
+:local(.nav>ul>a) {
     text-decoration: none;
     color: var(--main-theme-fg-100);
 }
 
-:local(nav>ul>a>li) {
+:local(.nav>ul>a>li) {
     padding: 0.25rem;
-    width: 2rem;
-    height: 2rem;
+    width: calc(2.5rem + 2px);
+    height: calc(2.5rem + 2px);
     line-height: 2rem;
     border: 2px solid transparent;
     border-radius: 50%;
 }
 
-:local(nav>ul>a>li:hover) {
+:local(.nav>ul>a>li:hover) {
     border-color: var(--main-theme-fg-100);
     color: var(--main-fg);
 }
 
-:local(nav>ul>a>li.active) {
+:local(.nav>ul>a>li.active) {
     border-color: var(--main-theme-fg-100);
     color: var(--main-fg);
 }

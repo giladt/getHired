@@ -1,4 +1,4 @@
-section.loading {
+:global(section.loading) {
     grid-column-start: 1;
     grid-column-end: 4;
     grid-row-start: 1;
@@ -8,7 +8,7 @@ section.loading {
     font-size: 2em;
 }
 
-section>article>.map-container {
+:global(section>article>.map-container) {
     position: relative;
     height: 17.5rem;
     border-radius: 0.5rem;
@@ -17,17 +17,17 @@ section>article>.map-container {
     overflow: hidden;
 }
 
-a[title="Report problems with Street View imagery to Google"],
-a[href^="http://maps.google.com/maps"],
-a[href^="https://maps.google.com/maps"],
-.gmnoprint a,
-.gmnoprint span,
-.gm-style-cc {
+:global(a[title="Report problems with Street View imagery to Google"]),
+:global(a[href^="http://maps.google.com/maps"]),
+:global(a[href^="https://maps.google.com/maps"]),
+:global(.gmnoprint a),
+:global(.gmnoprint span),
+:global(.gm-style-cc) {
     display: none !important;
 }
 
 @media screen and (min-width: 750px) {
-    main {
+     :global(main) {
         height: 90vh;
         width: 92.5vw;
         grid-template-columns: 4rem 20rem auto;
@@ -37,22 +37,22 @@ a[href^="https://maps.google.com/maps"],
 }
 
 @media screen and (max-width: 750px) {
-    main {
+     :global(main) {
         height: 95vh;
         width: 95vw;
         grid-template-columns: 4rem 3rem auto;
         grid-template-rows: 10rem 0.5rem auto;
     }
-    section {
+     :global(section) {
         padding: 0.1rem;
     }
 }
 
-section>article>h1 {
+:global(section>article>h1) {
     font-size: 3em;
 }
 
-article.address {
+:global(article.address) {
     display: grid;
     grid-template-columns: 1.75em auto 50px;
     margin-block-start: 1.5em;
@@ -62,34 +62,34 @@ article.address {
     align-items: center;
 }
 
-section>.profile>.address {
+:global(section>.profile>.address) {
     grid-row: 2;
 }
 
-article.list {
+:global(article.list) {
     display: grid;
     grid-template-columns: repeat(auto-fill, 250px);
     grid-template-rows: auto;
 }
 
-article.address {
+:global(article.address) {
     font-weight: bold;
 }
 
-article.address,
-article.list>ul {
+:global(article.address),
+:global(article.list>ul) {
     display: grid;
     grid-template-rows: auto;
     grid-template-columns: 50px auto;
     align-items: center;
 }
 
-article.list>ul {
+:global(article.list>ul) {
     list-style: none;
     padding-left: 0;
 }
 
-article.address>.icon,
-article.list>ul>li:first-child {
+:global(article.address>.icon),
+:global(article.list>ul>li:first-child) {
     text-align: center;
 }

@@ -1,5 +1,5 @@
 import React from 'react';
-import FullName from './full_name.jsx';
+import FullName from './full_name';
 import styles from './picture.module.css';
 
 interface Item {

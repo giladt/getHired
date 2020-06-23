@@ -19,7 +19,6 @@ class UpdateAddressForm extends React.Component{
   handleChange(e){
     //e.preventDefault();
     let value = e.target.value;
-    console.log('change', e.target.name, e.target.value);
     this.setState({
       data: {
         ...this.state.data,

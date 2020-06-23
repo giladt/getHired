@@ -34,14 +34,14 @@
 
 :local(.content>article::-webkit-scrollbar-thumb) {
     background-color: var(--scrollbar-thumb);
-    outline: 1px solid var(--scrollbar-outline);
+    outline: none;
     border-radius: 0.5rem;
     border: 0.15rem solid var(--main-bg);
 }
 
 :local(.content>article::-webkit-scrollbar-track-piece) {
     background-color: var(--scrollbar-track-piece);
-    outline: 1px solid slategrey;
+    outline: none;
     width: 1px;
     border: 5px var(--main-bg) solid;
 }

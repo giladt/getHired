@@ -9,7 +9,6 @@ import Styles from './Styles/appDemo.module.css'
 
 class AppDemo extends React.Component<any> {
   render() {
-    console.log(this.props)
     return (
       <div className={Styles.body}>
         <NavBar/>

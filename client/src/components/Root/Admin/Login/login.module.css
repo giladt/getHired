@@ -26,6 +26,12 @@
         --scale-bar-bg: rgba(64, 64, 64, 0.5);
         --scale-bar-fg: rgba(100, 149, 247, 1);
         --link-fg: beige;
+        --card-bg: rgb(68, 68, 68);
+        --card-fg: white;
+        --input-bg: rgb(50, 50, 50);
+    }
+    .theme {
+        variant: dark;
     }
 }
 
@@ -37,33 +43,65 @@
         /* white */
         --main-fg: rgb(24, 30, 32);
         /* cornflowerblue */
-        --main-theme-fg-100: rgba(100, 149, 247, 1);
         --main-bg-25: rgba(255, 255, 255, 0.25);
         --main-bg-30: rgba(255, 255, 255, 0.3);
         --main-bg-50: rgba(100, 100, 100, 0.85);
+        --main-theme-fg-75: rgba(100, 149, 247, 0.75);
+        --main-theme-fg-100: rgba(100, 149, 247, 1);
         --scrollbar-thumb: rgba(100, 149, 247, 0.75);
         --scrollbar-thumb-piece: rgba(64, 64, 64, 0.5);
+        --scrollbar-outline: red;
         /*cornflowerblue*/
         --border-fg: rgba(100, 149, 247, 1);
         --border-bg: rgb(24, 30, 32);
-        --sub-header: rgb(56, 56, 56);
-        --scale-bar-bg: rgba(194, 194, 194, 0.5);
-        --scale-bar-fg: rgba(100, 149, 247, 1);
-        --link-fg: rgb(100, 148, 237);
+        --sub-header: rgb(30, 68, 124);
+        --card-bg: rgb(230, 230, 230);
+        --card-fg: black;
+        --input-bg: white;
+    }
+    .theme {
+        variant: light;
     }
 }
 
-:global(body) {
+:local(.body),
+:local(.body:root) {
+    background: var(--body-bg);
+    color: var(--main-fg);
     font-family: 'Comfortaa', cursive;
     font-size: 16px;
-    margin: 0;
-    z-index: 0;
-    overflow: hidden;
-    background: var(--body-bg);
+}
+
+:local(.body>div) {
+    margin: 25vh 20vw;
+}
+
+:local(.Card) {
+    background: var(--card-bg);
+    color: var(--card-fg);
+}
+
+:local(.card-header) {
+    background-color: var(--main-theme-fg-100);
+    color: white;
+}
+
+:local(.form-control),
+:local(.form-control:active) {
+    background-color: var(--input-bg);
     color: var(--main-fg);
 }
 
-:global(main) {
-    display: grid;
-    margin: 5vh 2.5vw;
+:local(.form-control:hover) {
+    color: var(--main-theme-fg-100);
+}
+
+:local(.form-control:focus) {
+    font-weight: bolder;
+}
+
+:local(.btn.btn-primary) {
+    background-color: var(--main-theme-fg-100);
+    border-color: var(--main-theme-fg-100);
+    color: white;
 }

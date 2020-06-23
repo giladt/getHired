@@ -37,3 +37,7 @@
     line-height: 2.5rem;
     text-decoration: none;
 }
+
+:local(#root) {
+    padding: 5vh 2.5vw;
+}

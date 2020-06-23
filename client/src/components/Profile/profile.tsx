@@ -1,14 +1,16 @@
 import React from 'react';
 import styles from './profile.module.css';
 
-class Profile extends React.Component{
+class Profile extends React.Component<any>{
 
   render(){
+    const props:any = this.props;
     let letter = (<div></div>);
 
-    let employer = this.props.item.Applications.find(item=> { 
-      return item._id === this.props.employer;
+    const employer = props.item.Applications.find((item:any)=> { 
+      return item._id === props.employer;
     });
+
     if(employer && employer.cover_letter){
       letter = (
       <div>
@@ -17,7 +19,7 @@ class Profile extends React.Component{
         <p>A bit about myself:</p>
         <div dangerouslySetInnerHTML={{__html: employer.cover_letter}}></div>
         <p>Best regards,</p>
-        <p>{this.props.item.first_name}</p>
+        <p>{props.item.first_name}</p>
       </div>
       )
     }

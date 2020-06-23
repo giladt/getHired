@@ -4,11 +4,11 @@ import { Link } from "react-router-dom";
 import styles from './nav.module.css';
 
 interface Params {
-  routes: Array<any>,
-  icons: Array<any>,
-  page: Array<any>,
   user: string,
-  employer: string
+  page: Array<any>,
+  employer: string,
+  routes: Array<any>,
+  icons: any
 }
 
 export default (params: Params) => {
@@ -19,7 +19,7 @@ export default (params: Params) => {
           const key:any = Object.keys(route)[0];
 
           return (
-          <Link to={ `/${key}?u=${params.user}&e=${params.employer || ''}`} id={key} key={key} >
+          <Link to={ `/${key}/${params.user}/${params.employer}` || ''} id={key} key={key} >
             <li className={styles[params.page[key]]}>
               <i title={key.charAt(0).toUpperCase()+ key.slice(1)}><FontAwesomeIcon icon={params.icons[key]} /></i>
             </li>
