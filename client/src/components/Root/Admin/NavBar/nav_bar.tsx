@@ -12,7 +12,7 @@ export default (props:any) => {
 
   return(
     <Navbar sticky="top" bg={darkMode?'dark':'light'} variant={darkMode?'dark':'light'} expand="sm">
-      <Navbar.Brand href="#home">
+      <Navbar.Brand href="/admin">
         <img src='../images/logo.png' height='30' className="d-inline-block align-top" alt='TSABAR.net logo' />
       </Navbar.Brand>
       <Navbar.Toggle aria-controls="basic-navbar-nav" />

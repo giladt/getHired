@@ -1,0 +1,56 @@
+.Control,
+.Control:active {
+    margin-bottom: 0.5rem;
+    background-color: var(--input-bg);
+    color: var(--main-fg);
+}
+
+.Control::placeholder {
+    color: var(--main-fg-75);
+}
+
+.Control:hover {
+    background-color: var(--main-bg-50);
+    color: var(--main-theme-fg-100);
+}
+
+.Control:focus {
+    font-weight: bolder;
+    background-color: var(--input-bg);
+}
+
+.btnPrimary {
+    background-color: var(--main-theme-fg-100);
+    border-color: var(--main-theme-fg-100);
+    color: white;
+}
+
+.btnPrimary:hover {
+    background-color: var(--main-theme-fg-75);
+    border-color: var(--main-theme-fg-100);
+    color: white;
+}
+
+.btnPrimary:focus {
+    background-color: var(--main-bg-25);
+    border-color: var(--main-theme-fg-100);
+    color: white;
+}
+
+.btnOutlinePrimary {
+    border-color: var(--main-theme-fg-100);
+    background-color: var(--main-theme-fg-25);
+    color: white;
+}
+
+.btnOutlinePrimary:hover {
+    border-color: var(--main-theme-fg-75);
+    background-color: var(--main-theme-fg-100);
+    color: white;
+}
+
+.btnOutlinePrimary:focus {
+    border-color: var(--main-bg-25);
+    background-color: var(--main-theme-fg-100);
+    color: white;
+}
