@@ -1,0 +1,27 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+  {
+    "command": "npm run server",
+    "name": "Run Server",
+    "request": "launch",
+    "type": "node-terminal"
+  },
+  {
+    "command": "npm run client",
+    "name": "Run Client",
+    "request": "launch",
+    "type": "node-terminal"
+  },
+  {
+    "name": "Edge",
+    "type": "edge",
+    "request": "launch",
+    "userDataDir": false,
+    "url": "http://localhost:3000",
+    "webRoot": "${workspaceFolder}/client/src",
+    "sourceMapPathOverrides": {
+      "webpack:///client/src/*": "${webRoot}/*"
+    }
+  }]
+}
