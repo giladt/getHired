@@ -279,6 +279,33 @@ const RootQuery = new GraphQLObjectType({
                 return Candidate.find({ '_id': args.id });
             }
         },
+        Experiences: {
+            type: new GraphQLList(ExperienceType),
+            args: {
+                id: {type: GraphQLID }
+            },
+            resolve: (parent, args) => {
+                return Experience.find({ 'ref_id': args.id });
+            }
+        },
+        Rolls: {
+            type: new GraphQLList(RollType),
+            args: {
+                id: {type: GraphQLID }
+            },
+            resolve: (parent, args) => {
+                return Roll.find({ 'ref_id': args.id });
+            }
+        },
+        Tasks: {
+            type: new GraphQLList(TaskType),
+            args: {
+                id: {type: GraphQLID }
+            },
+            resolve: (parent, args) => {
+                return Task.find({ 'ref_id': args.id });
+            }
+        },
         Applications: {
             type: new GraphQLList(ApplicationType),
             args: { id: { type: GraphQLID } },
