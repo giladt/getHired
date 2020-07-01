@@ -14,6 +14,8 @@
         --main-bg-25: rgba(0, 0, 0, 0.25);
         --main-bg-30: rgba(0, 0, 0, 0.3);
         --main-bg-50: rgba(36, 39, 40, 0.85);
+        --main-theme-fg-25: rgba(100, 149, 247, 0.25);
+        --main-theme-fg-50: rgba(100, 149, 247, 0.5);
         --main-theme-fg-75: rgba(100, 149, 247, 0.75);
         --main-theme-fg-100: rgba(100, 149, 247, 1);
         --scrollbar-thumb: rgba(100, 149, 247, 0.75);
@@ -27,8 +29,12 @@
         --scale-bar-fg: rgba(100, 149, 247, 1);
         --link-fg: beige;
         --card-bg: rgb(68, 68, 68);
+        --card-head-bg: rgb(120, 120, 120);
+        --card-body-bg: rgb(95, 95, 95);
         --card-fg: white;
-        --input-bg: rgb(50, 50, 50);
+        --input-bg: rgb(110, 110, 110);
+        --input-prepend-bg: rgb(150, 150, 150);
+        --input-prepend-fg: rgb(0, 0, 0);
     }
     .theme {
         variant: dark;
@@ -46,6 +52,8 @@
         --main-bg-25: rgba(255, 255, 255, 0.25);
         --main-bg-30: rgba(255, 255, 255, 0.3);
         --main-bg-50: rgba(100, 100, 100, 0.85);
+        --main-theme-fg-25: rgba(100, 149, 247, 0.25);
+        --main-theme-fg-50: rgba(100, 149, 247, 0.5);
         --main-theme-fg-75: rgba(100, 149, 247, 0.75);
         --main-theme-fg-100: rgba(100, 149, 247, 1);
         --scrollbar-thumb: rgba(100, 149, 247, 0.75);
@@ -58,6 +66,8 @@
         --card-bg: rgb(230, 230, 230);
         --card-fg: black;
         --input-bg: white;
+        --input-prepend-bg: rgb(190, 190, 190);
+        --input-prepend-fg: rgb(0, 0, 0);
     }
     .theme {
         variant: light;

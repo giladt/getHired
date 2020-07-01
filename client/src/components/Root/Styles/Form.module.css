@@ -1,8 +1,16 @@
 .Control,
 .Control:active {
-    margin-bottom: 0.5rem;
     background-color: var(--input-bg);
     color: var(--main-fg);
+}
+
+.Prepend>span {}
+
+.Prepend>span {
+    background-color: var(--input-prepend-bg);
+    color: var(--input-prepend-fg);
+    font-size: x-small !important;
+    font-weight: bold;
 }
 
 .Control::placeholder {
@@ -17,6 +25,7 @@
 .Control:focus {
     font-weight: bolder;
     background-color: var(--input-bg);
+    color: var(--main-theme-fg-100);
 }
 
 .btnPrimary {
