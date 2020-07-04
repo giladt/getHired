@@ -6,12 +6,12 @@ const {
     Address,
     Language,
     Skill,
+    Education,
     Experience,
     Roll,
     Task,
     Application,
     StatusLog,
-    Education,
     Contact
 } = DataSchemas;
 
@@ -279,6 +279,15 @@ const RootQuery = new GraphQLObjectType({
                 return Candidate.find({ '_id': args.id });
             }
         },
+        Educations: {
+            type: new GraphQLList(EducationType),
+            args: {
+                id: {type: GraphQLID }
+            },
+            resolve: (parent, args) => {
+                return Education.find({ 'ref_id': args.id });
+            }
+        },
         Experiences: {
             type: new GraphQLList(ExperienceType),
             args: {
@@ -304,6 +313,15 @@ const RootQuery = new GraphQLObjectType({
             },
             resolve: (parent, args) => {
                 return Task.find({ 'ref_id': args.id });
+            }
+        },
+        ContactDetails: {
+            type: new GraphQLList(ContactDetailType),
+            args: {
+                id: {type: GraphQLID }
+            },
+            resolve: (parent, args) => {
+                return Contact.find({ 'ref_id': args.id });
             }
         },
         Applications: {
