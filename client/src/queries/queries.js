@@ -139,6 +139,90 @@ const GET_CANDIDATE_QL = gql `
   }
 `;
 
+const GET_CONTACT_DETAILS_QL = gql`
+  query($id: ID){
+    ContactDetails(id: $id){
+      _id
+      ref_id
+      type
+      value
+      is_default
+    }  
+  }
+`;
+
+const GET_EDUCATION_QL = gql`
+  query($id: ID) {
+    Educations(id: $id) {
+      _id
+      ref_id
+      institution_name
+      institution_type
+      studies_subject
+      degree_achived
+      start_date
+      graduation_date
+      institution_address{
+        _id
+        ref_id
+        street
+        house_no
+        city
+        state
+        country
+        postal_code
+        coordinates{
+          lat
+          lng
+        }
+      }
+    }
+  }
+`;
+
+const GET_EXPERIENCES_QL = gql`
+  query($id: ID) {
+    Experiences(id: $id) {
+      _id
+      ref_id
+      employer_name
+      employer_address{
+        _id
+        ref_id
+        street
+        house_no
+        city
+        state
+        country
+        postal_code
+      }
+    }
+
+  }
+`;
+
+const GET_ROLLS_QL = gql`
+  query($id: ID) {
+    Rolls(id: $id) {
+      _id
+      ref_id
+      title
+      start_date
+      end_date
+    }
+  }
+`;
+
+const GET_TASKS_QL = gql`
+  query($id: ID) {
+    Tasks(id: $id) {
+      _id
+      ref_id
+      description
+    }
+  }
+`;
+
 const ADD_INFO = gql `
   mutation (
     $ref_id: ID,
@@ -289,107 +373,20 @@ mutation UpdateExperience (
 export {
     GET_CANDIDATES_LIST_QL,
     GET_CANDIDATE_QL,
+    GET_CONTACT_DETAILS_QL,
+    GET_EDUCATION_QL,
+    GET_EXPERIENCES_QL,
+    GET_ROLLS_QL,
+    GET_TASKS_QL,
+
     ADD_ADDRESS,
     UPDATE_ADDRESS,
+
     UPDATE_SCALE,
     ADD_SCALE,
     DELETE_SCALE,
+
     UPDATE_EXPERIENCE,
+
     ADD_INFO
 };
-
-/*
-query ReadInfo {
-  Candidates{
-    _id
-    first_name
-    last_name
-    birth_date
-    place_of_birth
-    home_address{
-      _id
-      ref_id
-      street
-      house_no
-      city
-      state
-      country
-      postal_code
-    }
-    Education{
-      _id
-      ref_id
-      institution_name
-      institution_type
-      studies_subject
-      degree_achived
-      start_date
-      graduation_date
-      institution_address{
-        _id
-        ref_id
-        street
-        house_no
-        city
-        state
-        country
-        postal_code
-      }
-      documents
-    }
-    contact_details{
-      _id
-      type
-      value
-    }
-    Skills{
-      _id
-      ref_id
-      name
-      level
-    }
-    Languages{
-      _id
-      ref_id
-      name
-      level
-    }
-    Applications{
-      _id
-      ref_id
-      employer_name
-      employer_address{
-        _id
-        ref_id
-        street
-        house_no
-        city
-        state
-        country
-        postal_code
-      }
-      role_name
-      roll_description
-      contact_name
-      website_url
-      openning_url
-      cover_letter
-      status_log{
-        _id
-        ref_id
-        date
-        log_value
-      }
-    }
-  }
-}
-*/
-
-/*
-query ReadOne {
-  Candidate(id: "5ebfa08e2793e32a4bdce817"){
-    first_name
-   	last_name
-  }
-}
-*/
