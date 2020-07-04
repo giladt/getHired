@@ -28,6 +28,58 @@
     color: var(--main-theme-fg-100);
 }
 
+.spanBtn {
+    display: grid;
+    text-align: center;
+    text-align: -webkit-center;
+    cursor: pointer;
+    align-items: center;
+    background-color: var(--main-bg-25);
+    border: 1px solid var(--main-bg-25);
+    border-radius: 0.25rem;
+    width: calc(2rem - 2px);
+    height: calc(2rem - 2px);
+}
+
+.spanBtn:hover {
+    background-color: var(--main-bg-50);
+    color: var(--main-fg);
+}
+
+.editMode {
+    border-left: 0.5rem solid var(--main-theme-fg-100);
+    border-radius: 0.5rem;
+    padding-left: 0.5rem;
+    margin-left: -1rem;
+    margin-bottom: 2rem;
+}
+
+.editMode::after {
+    content: '';
+    display: flex;
+    width: 100%;
+    border-bottom: 1px dotted white;
+    position: relative;
+    top: 1rem;
+}
+
+.subList {
+    border-left: 0.5rem solid var(--main-theme-fg-75);
+    margin: 0.5rem 0;
+    padding-left: 0.5rem;
+    border-radius: 0.5rem;
+    margin-bottom: 1rem;
+}
+
+.subList::after {
+    content: '';
+    display: flex;
+    width: 100%;
+    border-bottom: 1px dotted white;
+    position: relative;
+    top: 0.5rem;
+}
+
 .btnPrimary {
     background-color: var(--main-theme-fg-100);
     border-color: var(--main-theme-fg-100);
