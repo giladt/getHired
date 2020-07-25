@@ -95,6 +95,7 @@ const GET_CANDIDATE_QL = gql `
         _id
         type
         value
+        is_default
       }
       Skills{
         _id
@@ -104,7 +105,7 @@ const GET_CANDIDATE_QL = gql `
       }
       Languages{
         _id
-        ref_id
+
         name
         level
       }
@@ -148,6 +149,25 @@ const GET_CONTACT_DETAILS_QL = gql`
       value
       is_default
     }  
+  }
+`;
+
+const GET_ADDRESS_QL = gql`
+  query($id: ID){
+    Addresses(id: $id){
+      _id
+      ref_id
+      street
+      house_no
+      city
+      state
+      country
+      postal_code
+      coordinates{
+        lat
+        lng
+      }
+    }
   }
 `;
 
@@ -371,22 +391,23 @@ mutation UpdateExperience (
 }`;
 
 export {
-    GET_CANDIDATES_LIST_QL,
-    GET_CANDIDATE_QL,
-    GET_CONTACT_DETAILS_QL,
-    GET_EDUCATION_QL,
-    GET_EXPERIENCES_QL,
-    GET_ROLLS_QL,
-    GET_TASKS_QL,
+  GET_CANDIDATES_LIST_QL,
+  GET_CANDIDATE_QL,
+  GET_CONTACT_DETAILS_QL,
+  GET_EDUCATION_QL,
+  GET_EXPERIENCES_QL,
+  GET_ADDRESS_QL,
+  GET_ROLLS_QL,
+  GET_TASKS_QL,
 
-    ADD_ADDRESS,
-    UPDATE_ADDRESS,
+  ADD_ADDRESS,
+  UPDATE_ADDRESS,
 
-    UPDATE_SCALE,
-    ADD_SCALE,
-    DELETE_SCALE,
+  UPDATE_SCALE,
+  ADD_SCALE,
+  DELETE_SCALE,
 
-    UPDATE_EXPERIENCE,
+  UPDATE_EXPERIENCE,
 
-    ADD_INFO
+  ADD_INFO
 };

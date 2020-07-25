@@ -324,6 +324,15 @@ const RootQuery = new GraphQLObjectType({
                 return Contact.find({ 'ref_id': args.id });
             }
         },
+        Addresses: {
+            type: new GraphQLList(AddressType),
+            args: {
+                id: {type: GraphQLID }
+            },
+            resolve: (parent, args) => {
+                return Address.find({ 'ref_id': args.id });
+            }
+        },
         Applications: {
             type: new GraphQLList(ApplicationType),
             args: { id: { type: GraphQLID } },

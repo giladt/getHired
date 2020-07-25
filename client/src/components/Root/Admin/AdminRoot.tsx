@@ -14,7 +14,6 @@ import Col from 'react-bootstrap/Col'
 import Button from 'react-bootstrap/Button'
 import Form from 'react-bootstrap/Form'
 import InputGroup from 'react-bootstrap/InputGroup'
-import Accordion from 'react-bootstrap/Accordion'
 
 import NavBar from './NavBar/nav_bar';
 import AdminLogin from './Login/login';
@@ -23,7 +22,7 @@ import Spinner from '../../Root/spinner';
 import s_AdminRoot from './AdminRoot.module.css'
 import s_Form from './../Styles/Form.module.css'
 
-import { GET_EDUCATION_QL, GET_EXPERIENCES_QL, GET_ROLLS_QL, GET_TASKS_QL, GET_CANDIDATE_QL, GET_CONTACT_DETAILS_QL } from '../../../queries/queries'
+import { GET_EDUCATION_QL, GET_EXPERIENCES_QL, GET_ROLLS_QL, GET_TASKS_QL } from '../../../queries/queries'
 import { useQuery } from '@apollo/react-hooks'
 import Collapse from 'react-bootstrap/Collapse'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
@@ -31,26 +30,28 @@ import { faPenSquare, faSave } from '@fortawesome/free-solid-svg-icons'
 
 interface InputFieldParams {
   name: string,
+  address_obj?: string,
   text?: string,
   idx?: number,
   r_id?: number,
   type: string,
   placeholder?: string,
-  onChange?: any,
+  onChange: any,
   value: string,
   sm: number
 }
 
 const Inpt = (params:InputFieldParams) => {
+
   return (
     <InputGroup size='sm' as={Col} sm={params.sm}>
       <InputGroup.Prepend className={s_Form.Prepend}><InputGroup.Text>{params.text || params.name}</InputGroup.Text></InputGroup.Prepend>
       <Form.Control
-        id={params.name + '|' + params.idx + '|' + params.r_id}
+        id={params.name}
         className={s_Form.Control} 
         type={params.type}
         onChange={params.onChange}
-        defaultValue={params.value}
+        value={params.value}
         placeholder={params.placeholder} />
     </InputGroup>
   )
@@ -62,6 +63,10 @@ function Tasks(params:any) {
   if(error) return <p>`Error! ${error.message}`</p>;
   const tasks:any = data.Tasks.map((item:any)=> item )
 
+  const handleChange = (e:any) => {
+    console.log(e.target.value);
+  }
+
   return (
     <Row className="mb-1">
       <Col sm={12}>
@@ -71,7 +76,7 @@ function Tasks(params:any) {
         {tasks.map((item:any, idx:number)=>(
           <div key={idx.toString()}>
             <Row className={`mb-1`}>
-              <Inpt sm={12} name='Task' type='text' placeholder="Description" value={item.description} />
+              <Inpt sm={12} name='Task' type='text' placeholder="Description" onChange={handleChange} value={item.description} />
             </Row>
           </div>
         ))}
@@ -173,6 +178,7 @@ function Experiences(params:any) {
 
   const handleRollChange:any = (e:any) => {
     const {id, value, idx} = e.target
+    console.log('handleRollChange',id, value, idx)
   }
 
   return (
@@ -400,30 +406,38 @@ function Education(params:any) {
 
 }
 
+// V
 function ContactDetails(params:any) {
+  
+  // const handleEvent = (e:any) => {
+  //   const [name,index] = e.target.id.split('.')
 
-  const { loading, error, data } = useQuery(GET_CONTACT_DETAILS_QL, {variables: {id: params.id}})  
-  if(loading) return (<Spinner />)
-  if(error) return <p>`Error! ${error.message}`</p>;
+  //   const temp = [...params.state.get.contact_details]
+  //   temp[index] = {[name]: e.target.type !=='radio'? e.target.value : e.target.checked}
 
-  const contactDetails:any = data.ContactDetails.map((item:any)=> item )
-  console.log(contactDetails);
+  //   params.state.set({
+  //     ...params.state.get, 
+  //     contact_details: temp
+  //   })
+  // }
+
   return(
     <>
       <br/>Contact details
-      {contactDetails.map((item:any,idx:any)=>(
+      {params.state.get.contact_details.map((item:any,idx:any)=>{
+        return (
         <Row className="mb-2" key={idx.toString()}>
           <InputGroup as={Col} sm={12} size='sm'>
             <InputGroup.Prepend className={s_Form.Prepend}><InputGroup.Text>Type</InputGroup.Text></InputGroup.Prepend>
-            <Form.Control id='Type' className={s_Form.Control} type="text" placeholder="Type" onChange={params.handleEvent} defaultValue={item.type} />
+            <Form.Control id={`contact_details.type.${idx}`} className={s_Form.Control} type="text" placeholder="Type" onChange={params.onChange} value={item.type} />
             <InputGroup.Prepend className={s_Form.Prepend}><InputGroup.Text>Value</InputGroup.Text></InputGroup.Prepend>
-            <Form.Control id='Value' className={s_Form.Control} type="text" placeholder="Value" onChange={params.handleEvent} defaultValue={item.value} />
+            <Form.Control id={`contact_details.value.${idx}`} className={s_Form.Control} type="text" placeholder="Value" onChange={params.onChange} value={item.value} />
             <InputGroup.Append className={s_Form.Prepend}>
-              <InputGroup.Radio name='is_default_radio' id={`IsDefault${idx}`} className={s_Form.Control} aria-label="Default?" onChange={params.handleEvent} defaultChecked={item.is_default} />
+              <InputGroup.Radio name='is_default_radio' id={`contact_details.is_default.${idx}`} type='radio' className={s_Form.Control} aria-label="Default?" onChange={params.onChange} checked={item.is_default} />
             </InputGroup.Append>
           </InputGroup>
         </Row>
-      ))}
+      )})}
       <Row className="mb-2">
         <Col sm={12}>
           <Button as={Col} sm={12} size='sm' className={s_Form.btnOutlinePrimary} variant="outline-primary">Add contact detail</Button>
@@ -433,12 +447,44 @@ function ContactDetails(params:any) {
   )
 }
 
-function PersonalInfo(params:any) {
-  const { loading, error, data } = useQuery(GET_CANDIDATE_QL, {variables: {id: params.id}})  
-  if(loading) return (<Spinner />)
-  if(error) return <p>`Error! ${error.message}`</p>;
+function Address(params:any) {
 
-  const personalInfo:any = data.Candidate.map((item:any)=> item )[0]
+  const data = params.state.get[params.address_obj];
+
+  return(
+    <>
+      <Row className="mb-1">
+        <Col sm={12}><br/>Residence</Col>
+      </Row>
+
+      <div className="mb-2" >
+        <Row className="mb-1">
+          <Inpt sm={9} name={`${params.address_obj}.street`} text= 'Street' type="text" placeholder="Street" onChange={params.onChange} value={data.street} />
+          <Inpt sm={3} name={`${params.address_obj}.house_no`} text= 'No.' type="text" placeholder="House number" onChange={params.onChange} value={data.house_no} />
+        </Row>
+        <Row className="mb-1">
+            <Inpt sm={6} name={`${params.address_obj}.city`} text= 'City' type="text" placeholder="City" onChange={params.onChange} value={data.city} />
+            <Inpt sm={6} name={`${params.address_obj}.state`} text= 'District/State' type="text" placeholder="District/State" onChange={params.onChange} value={data.state} />
+        </Row>
+        <Row className="mb-1">
+            <Inpt sm={8} name={`${params.address_obj}.country`} text= 'Country' type="text" placeholder="Country" onChange={params.onChange} value={data.country} />
+            <Inpt sm={4} name={`${params.address_obj}.postal_code`} text= 'Postal Code' type="number" placeholder="Postal Code" onChange={params.onChange} value={data.postal_code} />
+        </Row>
+      </div>
+
+      <Row className="mb-2">
+        <Col sm={12}>
+          <Button as={Col} sm={12} size='sm' className={s_Form.btnOutlinePrimary} variant="outline-primary">Add Address</Button>
+        </Col>
+      </Row>
+    </>
+  )
+}
+
+function PersonalInfo(params:any) {
+
+  const state = {get: params.state.get, set: params.state.set}
+
   return (
     <Card className={s_AdminRoot.Card}>
       <Card.Header className={s_AdminRoot.cardHeader}>
@@ -447,83 +493,51 @@ function PersonalInfo(params:any) {
 
       <Card.Body className={s_AdminRoot.cardBody}>
         <Row className="mb-1">
-            <Inpt sm={3} name='FirstName' text='First' type="text" placeholder="Your first name" onChange={params.handleEvent} value={personalInfo.first_name} />
-            <Inpt sm={3} name='LastName' text='Last' type="text" placeholder="Your last name" onChange={params.handleEvent} value={personalInfo.last_name} />
-            <Inpt sm={6} name='Title' text='A short Title' type="text" placeholder="What do you do?" onChange={params.handleEvent} value={personalInfo.short_title} />
+            <Inpt sm={3} name='first_name' text='First' type="text" placeholder="Your first name" onChange={params.handleEvent} value={params.state.get.first_name} />
+            <Inpt sm={3} name='last_name' text='Last' type="text" placeholder="Your last name" onChange={params.handleEvent} value={params.state.get.last_name} />
+            <Inpt sm={6} name='title' text='A short Title' type="text" placeholder="What do you do?" onChange={params.handleEvent} value={params.state.get.short_title} />
         </Row>
 
         <Row className="mb-1">
-          <Inpt sm={6} name='BirthDate' text='Birth Date' type='date' placeholder='' onChange={params.handleEvent} value={personalInfo.birth_date} />
-          <Inpt sm={6} name='Origin' text='Originaly from' type="text" placeholder="Ex. Berlin" onChange={params.handleEvent} value={personalInfo.place_of_birth} />
-        </Row>
-        <Row className="mb-1">
-          <Col sm={12}><br/>Residence</Col>
-          <Inpt sm={9} name='Info.Street' text= 'Street' type="text" placeholder="Street" onChange={params.handleEvent} value={personalInfo.home_address.street} />
-          <Inpt sm={3} name='Info.HouseNo' text= 'No.' type="text" placeholder="House number" onChange={params.handleEvent} value={personalInfo.home_address.house_no} />
-        </Row>
-        <Row className="mb-1">
-            <Inpt sm={6} name='Info.City' text= 'City' type="text" placeholder="City" onChange={params.handleEvent} value={personalInfo.home_address.city} />
-            <Inpt sm={6} name='Info.State' text= 'District/State' type="text" placeholder="District/State" onChange={params.handleEvent} value={personalInfo.home_address.state} />
-        </Row>
-        <Row className="mb-1">
-            <Inpt sm={8} name='Info.Country' text= 'Country' type="text" placeholder="Country" onChange={params.handleEvent} value={personalInfo.home_address.country} />
-            <Inpt sm={4} name='Info.PostalCode' text= 'Postal Code' type="number" placeholder="Postal Code"onChange={params.handleEvent} value={personalInfo.home_address.postal_code} />
+          <Inpt sm={6} name='birth_date' text='Birth Date' type='date' placeholder='' onChange={params.handleEvent} value={params.state.get.birth_date} />
+          <Inpt sm={6} name='place_of_birth' text='Originaly from' type="text" placeholder="Ex. Berlin" onChange={params.handleEvent} value={params.state.get.place_of_birth} />
         </Row>
 
-        <ContactDetails id={personalInfo._id} />
+        <Address address_obj='home_address' onChange={params.handleEvent} state={state} />
+
+        <ContactDetails onChange={params.handleEvent} state={state} />
+ 
       </Card.Body>
     </Card>
-
   )
 }
 
 function AdminRoot(params:any) {
 
   const { path } = useRouteMatch();
-
-  let data:any = ''
-  let loading:any = ''
-  let error:any = ''
   
-  data = params.data.Candidate[0];
+  let data = params.data.Candidate[0];
 
   const links = [
     {name: 'Login', url: '/admin/login'},
     {name: 'Signup', url: '/admin/signup'},
   ]
 
-  type TaskType = {
-    description: string
-  }
-
-  type RollType ={
-    title: string,
-    start_date: string,
-    end_date: string,
-    tasks: Array<TaskType>
-  }
-
-  const newRoll:Array<RollType> = [{
-    title: '',
-    start_date: '',
-    end_date: '',
-    tasks: []
-  }]
-
   const [valInfo, setValInfo]:any = useState({
-    FirstName: data.first_name,
-    LastName: data.last_name,
-    Title: data.short_title,
-    BirthDate: Moment(new Date(parseInt(data.birth_date)),'mm-dd-yyyy').format('yyyy-MM-DD'),
-    Origin: data.place_of_birth,
-    Addr: {
-      Street: data.home_address.street,
-      HouseNo: data.home_address.house_no,
-      City: data.home_address.city,
-      State: data.home_address.state,
-      Country: data.home_address.country,
-      PostalCode: data.home_address.postal_code
-    }
+    first_name: data.first_name,
+    last_name: data.last_name,
+    short_title: data.short_title,
+    birth_date: Moment(new Date(parseInt(data.birth_date)),'mm-dd-yyyy').format('yyyy-MM-DD'),
+    place_of_birth: data.place_of_birth,
+    home_address: {
+      street: data.home_address.street,
+      house_no: data.home_address.house_no,
+      city: data.home_address.city,
+      state: data.home_address.state,
+      country: data.home_address.country,
+      postal_code: data.home_address.postal_code
+    },
+    contact_details: [...data.contact_details]
   })
 
   const [valEdu, setValEdu]:any = useState({
@@ -559,7 +573,7 @@ function AdminRoot(params:any) {
         Country: '',
         PostalCode: ''
       },
-      Rolls: expr.rolls.map((roll: RollType) => ({
+      Rolls: expr.rolls.map((roll: any) => ({
         Title: roll.title,
         StartDate: roll.start_date,
         EndDate: roll.end_date,
@@ -570,16 +584,30 @@ function AdminRoot(params:any) {
     }))    
   )
   
-  const handleInfoChange:any = (e:any) => {
-    const {id, value} = e.target
-    const subId = id.split('.')[1];
-    if(subId) {
-      let info = {...valInfo}
-      info.Addr[subId] = value
-      setValInfo({...valInfo, info})
-    } else {
-      setValInfo({...valInfo, [id]: value})
+  const updateValue:any = (state:any, nodes:Array<string>, val:any) => {
+    const next = [...nodes];
+
+    if(next.length === 2 && !isNaN(parseInt(next[1]))) {
+
+      state[next[1]][next[0]] = val;
+      return {...state};
+
+    } else if (next.length === 1) {
+
+      state[next[0]] = val;
+      return {...state};
+
     }
+
+    return updateValue(state[next[0]], next.splice(1,), val);
+  }
+
+  const handleChange:any = (e:any) => {
+    const {id, value, checked} = e.target
+    const nodes = id.split('.');
+
+    const info = updateValue({...valInfo}, nodes, checked?checked:value);
+    setValInfo({...valInfo, ...info})
   }
 
   const handleEducationChange:any = (e:any) => {
@@ -623,13 +651,13 @@ function AdminRoot(params:any) {
             <Form onSubmit = {handleSubmit}>
 
               {/* Personal Info */}
-              <PersonalInfo id={data._id} handleEvent={handleInfoChange} />
+              <PersonalInfo id={data._id} handleEvent={handleChange} state={{get: valInfo, set: setValInfo}} />
 
               {/* Education */}
-              <Education id={data._id} handleEvent={handleEducationChange} />
+              <Education id={data._id} data={{get: valEdu, set: setValEdu}} handleEvent={handleEducationChange} />
 
               {/* Experience */}
-              <Experiences id={data._id} handleEvent={handleExperienceChange} />
+              <Experiences id={data._id} data={{get: valExpr, set: setValExpr}} handleEvent={handleExperienceChange} />
 
               <Button<any> className={s_Form.btnPrimary} variant="primary" type="submit" block>
                 Submit
