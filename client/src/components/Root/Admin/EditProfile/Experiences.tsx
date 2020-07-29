@@ -1,6 +1,4 @@
 import React, { useState } from 'react'
-import { useQuery } from '@apollo/react-hooks'
-import { GET_EXPERIENCES_QL } from './../../../../queries/queries'
 
 import Card from 'react-bootstrap/Card'
 import Row from 'react-bootstrap/Row'
@@ -13,7 +11,6 @@ import { faPenSquare, faSave } from '@fortawesome/free-solid-svg-icons'
 
 import Rolls from './Rolls'
 import Inpt from './Inpt'
-import Spinner from '../../spinner'
 import Address from './Address'
 
 import s_AdminRoot from '../AdminRoot.module.css'
@@ -28,6 +25,10 @@ export default function Experiences(params:any) {
     let tmp = [...el]
     tmp[idx] = !tmp[idx]
     setEl(tmp)
+  }
+
+  const handleRollChange:any = (e:any) => {
+    params.handleEvent(e);
   }
 
   return (
@@ -61,30 +62,9 @@ export default function Experiences(params:any) {
               <Collapse in={isOpen[idx]}>                
                 {(item.employer_address && item.employer_address !== null) ? (   
                   <div id="collapse-experience" >
-                    <Row className="mb-1">
-                      <Col sm={12}>
-                        Address
-                      </Col>
-                    </Row>
-
                     <Address title='Address' address_obj={`${idx}.employer_address`} noAddAddressButton={true} onChange={params.handleEvent} state={state} />
 
-{/* 
-                    <Row className="mb-1">
-                      <Inpt sm={9} name='Expr.Street' text='Street' type="text" placeholder="Street" onChange={params.handleEvent} value={item.employer_address.street} />
-                      <Inpt sm={3} name='Expr.HouseNo' text='House number' type="text" placeholder="House number" onChange={params.handleEvent} value={item.employer_address.house_no} />
-                    </Row>
-                    <Row className="mb-1">
-                      <Inpt sm={6} name='Expr.City' text="City" type="text" placeholder="City" onChange={params.handleEvent} value={item.employer_address.city} />
-                      <Inpt sm={6} name='Expr.State' text="District/State" type="text" placeholder="District/State" onChange={params.handleEvent} value={item.employer_address.state} />
-                    </Row>
-                    <Row className="mb-1">
-                      <Inpt sm={8} name='Expr.Country' text='Country' type="text" placeholder="Country" onChange={params.handleEvent} value={item.employer_address.country} />
-                      <Inpt sm={4} name='Expr.PostalCode' text='Postal Code' type="number" placeholder="Postal Code"onChange={params.handleEvent} value={item.employer_address.postal_code} />
-                    </Row>
-*/}
-
-                    <Rolls id={item._id} handleEvent={params.handleEvent} rolls={item} />
+                    <Rolls id={item._id} name={`${idx}.rolls`} handleEvent={handleRollChange} rolls={item} />
                   </div>
                 ):(
                   <div id="collapse-experience" >

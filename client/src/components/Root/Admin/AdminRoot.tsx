@@ -85,8 +85,8 @@ function AdminRoot(params:any) {
       },
       rolls: expr.rolls.map((roll: any) => ({
         title: roll.title,
-        start_date: roll.start_date,
-        end_date: roll.end_date,
+        start_date: Moment(new Date(parseInt(roll.start_date)),'mm-dd-yyyy').format('yyyy-MM-DD'),
+        end_date: Moment(new Date(parseInt(roll.end_date)),'mm-dd-yyyy').format('yyyy-MM-DD'),
         tasks: roll.tasks.map((task: any) => ({
           description: task.description
         }))
@@ -117,9 +117,7 @@ function AdminRoot(params:any) {
     const nodes = id.split('.');
 
     let info:any = {...valInfo}
-    if(checked) info[nodes[0]].map((item:any)=>{
-        item.is_default=false;
-      });
+    if(checked) info[nodes[0]].map((item:any) => item.is_default=false );
     
     info = updateValue({...valInfo}, nodes, checked?checked:value);
     setValInfo({...valInfo, ...info});
@@ -139,21 +137,14 @@ function AdminRoot(params:any) {
     const {id, value} = e.target
     const nodes = id.split('.');
 
+    console.log('handleExprChange',id,value)
+
     let expr:any = [...valExpr]
     let temp = updateValue({...valExpr[nodes[0]]}, [...nodes].slice(1,), value);
-    expr[nodes[0]] = temp
-    setValExpr(expr);
-/*
-    const subId = id.split('.')[1];
-    if(subId) {
-      let expr = {...valExpr}
 
-      expr.Addr[subId] = value
-      setValExpr({...valExpr, ...expr})
-    } else {
-      setValExpr({...valExpr, [id]: value})
-    }
-*/
+    expr[nodes[0]] = temp
+    
+    setValExpr(expr);
   }
 
   const handleSubmit:any = (e:any) => {

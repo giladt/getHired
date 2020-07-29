@@ -14,7 +14,6 @@ export default function Address(params:any) {
     ? params.state.get[parts[0]][parts[parts.length-1]]
     : params.state.get[address_obj];
 
-  console.log('ADD_OBJ',address_obj)
   return(
     <>
       <Row className="mb-1">

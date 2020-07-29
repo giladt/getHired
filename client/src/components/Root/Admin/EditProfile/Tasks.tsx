@@ -1,25 +1,15 @@
 import React from 'react'
-import { useQuery } from '@apollo/react-hooks'
-import { GET_TASKS_QL } from './../../../../queries/queries'
 
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
 import Button from 'react-bootstrap/Button'
 
 import Inpt from './Inpt';
-import Spinner from '../../spinner';
 
 import s_Form from '../../Styles/Form.module.css'
 
 export default function Tasks(params:any) {
-  const { loading, error, data } = useQuery(GET_TASKS_QL, {variables: {id: params.id}})  
-  if(loading) return (<Spinner />)
-  if(error) return <p>`Error! ${error.message}`</p>;
-  const tasks:any = data.Tasks.map((item:any)=> item )
-
-  const handleChange = (e:any) => {
-    console.log(e.target.value);
-  }
+  const tasks:any = params.tasks.tasks.map((item:any)=> item )
 
   return (
     <Row className="mb-1">
@@ -30,7 +20,7 @@ export default function Tasks(params:any) {
         {tasks.map((item:any, idx:number)=>(
           <div key={idx.toString()}>
             <Row className={`mb-1`}>
-              <Inpt sm={12} name='Task' type='text' placeholder="Description" onChange={handleChange} value={item.description} />
+              <Inpt sm={12} name={`${params.name}.${idx}.description`} text='Task' type='text' placeholder="description" onChange={params.handleEvent} value={item.description} />
             </Row>
           </div>
         ))}

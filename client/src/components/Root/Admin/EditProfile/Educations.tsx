@@ -20,7 +20,7 @@ import s_Form from './../../Styles/Form.module.css'
 export default function Education(params:any) {
 
   const state = {get: params.state.get, set: params.state.set}
-  const [isOpen, setIsOpen] = useState([true,true])
+  const [isOpen, setIsOpen] = useState([false])
   const educations:any = state.get.map((item:any)=> item )
   const updateOpenState= (el:any, setEl:any, idx:number) => {
     let tmp = [...el]
