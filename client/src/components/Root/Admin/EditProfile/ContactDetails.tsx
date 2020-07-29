@@ -28,7 +28,15 @@ export default function ContactDetails(params:any) {
       )})}
       <Row className="mb-2">
         <Col sm={12}>
-          <Button as={Col} sm={12} size='sm' className={s_Form.btnOutlinePrimary} variant="outline-primary">Add contact detail</Button>
+          <Button 
+            as={Col} sm={12} size='sm' 
+            className={s_Form.btnOutlinePrimary} 
+            variant="outline-primary" 
+            onClick={params.onChange} 
+            id={`add_contact_detail`} 
+          >
+            Add contact detail
+          </Button>
         </Col>
       </Row>
     </>

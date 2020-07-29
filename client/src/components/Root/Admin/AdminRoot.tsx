@@ -115,21 +115,72 @@ function AdminRoot(params:any) {
   const handlePersonalInfoChange:any = (e:any) => {
     const {id, value, checked} = e.target;
     const nodes = id.split('.');
-
     let info:any = {...valInfo}
     if(checked) info[nodes[0]].map((item:any) => item.is_default=false );
-    
-    info = updateValue({...valInfo}, nodes, checked?checked:value);
+
+    switch(id){
+      case 'add_home_address':
+        info = {...valInfo.home_address.push({
+          street: '',
+          house_no: '',
+          city: '',
+          state: '',
+          country: '',
+          postal_code: ''
+        })}
+        break;
+
+      case 'add_contact_detail':
+        info = {...valInfo.contact_details.push({
+          type:'',
+          value:'',
+          is_default:''
+        })}
+        break;
+      default:
+        info = updateValue({...valInfo}, nodes, checked?checked:value);
+    }
     setValInfo({...valInfo, ...info});
   }
 
   const handleEducationChange:any = (e:any) => {
     const {id, value} = e.target;
     const nodes = id.split('.');
-
     let edu:any = [...valEdu]
-    let temp = updateValue({...valEdu[nodes[0]]}, [...nodes].slice(1,), value);
-    edu[nodes[0]] = temp
+
+    switch(id){
+      case 'add_institution_address':
+        edu = {...valEdu.institution_address.push({
+          street: '',
+          house_no: '',
+          city: '',
+          state: '',
+          country: '',
+          postal_code: ''
+        })}
+        break;
+
+      case 'add_education':
+        edu.push({
+          institution_name: '',
+          studies_subject: '',
+          start_date: '',
+          graduation_date: '',
+          institution_address: {
+            street: '',
+            house_no: '',
+            city: '',
+            state: '',
+            country: '',
+            postal_code: ''
+          }
+        })
+        break;
+      default:
+        let temp = updateValue({...valEdu[nodes[0]]}, [...nodes].slice(1,), value);
+        edu[nodes[0]] = temp
+    }
+
     setValEdu(edu);
   }
 
