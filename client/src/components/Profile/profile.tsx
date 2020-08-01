@@ -13,14 +13,15 @@ class Profile extends React.Component<any>{
 
     if(employer && employer.cover_letter){
       letter = (
-      <div>
+      <article>
         <h1>Dear {employer.contact_name},</h1>
-        <p>I've reviewed your <a href={employer.openning_url} rel='noopener noreferrer' target='_blank'>offer</a> for <span>{employer.role_name}</span> and I believe that my set of skills is a good match for the this position.</p>
+        <p>I’ve examined your position opening for <a href={employer.openning_url} rel='noopener noreferrer' target='_blank'>{employer.role_name}</a> and I believe that my set of skills is a good match for this position.</p>
         <p>A bit about myself:</p>
         <div dangerouslySetInnerHTML={{__html: employer.cover_letter}}></div>
-        <p>Best regards,</p>
-        <p>{props.item.first_name}</p>
-      </div>
+
+        <p>I look forward to hearing back from you.</p>  
+        <p>Yours sincerely,<br/> {props.item.first_name} {props.item.last_name}</p> 
+      </article>
       )
     }
   
