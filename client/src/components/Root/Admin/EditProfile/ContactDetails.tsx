@@ -28,15 +28,12 @@ export default function ContactDetails(params:any) {
           </InputGroup>
           <Col sm={1}>
             <span className={`${s_Form.spanBtn} ${s_Form.spanBtnRed}`}
-              id={'delete_contact_detail'}
               onClick={(e:any) => {
                 e.target.id = 'delete_contact_detail'
                 params.onChange(e,idx)
               }}
             >
-              <FontAwesomeIcon 
-                icon={faTrashAlt} 
-                size='1x' 
+              <FontAwesomeIcon icon={faTrashAlt} size='1x' 
               />
             </span>
           </Col>
@@ -58,4 +55,3 @@ export default function ContactDetails(params:any) {
     </>
   )
 }
-

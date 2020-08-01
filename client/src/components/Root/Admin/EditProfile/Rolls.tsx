@@ -6,7 +6,7 @@ import Button from 'react-bootstrap/Button'
 import Collapse from 'react-bootstrap/Collapse'
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faPenSquare, faSave } from '@fortawesome/free-solid-svg-icons'
+import { faPenSquare, faSave, faTrashAlt } from '@fortawesome/free-solid-svg-icons'
 
 import Moment from 'moment'
 
@@ -47,7 +47,19 @@ export default function Rolls(params:any) {
           <div key={idx.toString()} className={`${(isOpen[idx])? s_Form.subList : ''}`}>
             <Row className='mb-1'>
               {isOpen[idx]?(
-                <Inpt sm={11} name={`${params.name}.${idx}.title`} text='Title' type="text" placeholder="Title" onChange={params.handleEvent} value={item.title} />
+                <>
+                  <Inpt sm={11} name={`${params.name}.${idx}.title`} text='Title' type="text" placeholder="Title" onChange={params.handleEvent} value={item.title} />
+                  <Col sm={1}>
+                    <span className={`${s_Form.spanBtn} ${s_Form.spanBtnRed}`}
+                      onClick={(e:any) => {
+                        e.target.id = 'delete_roll'
+                        params.onChange(e,idx)
+                      }}
+                    >
+                      <FontAwesomeIcon icon={faTrashAlt} size='1x' />
+                    </span>
+                  </Col>
+                </>
               ):(
                 <Col sm={11}>
                     <span>{item.title} <small>{start_date} - {end_date}</small></span>
