@@ -27,7 +27,7 @@ export default function ContactDetails(params:any) {
             </InputGroup.Append>
           </InputGroup>
           <Col sm={1}>
-            <span className={s_Form.spanBtn}
+            <span className={`${s_Form.spanBtn} ${s_Form.spanBtnRed}`}
               id={'delete_contact_detail'}
               onClick={(e:any) => {
                 e.target.id = 'delete_contact_detail'
@@ -35,7 +35,6 @@ export default function ContactDetails(params:any) {
               }}
             >
               <FontAwesomeIcon 
-                color='cornflowerblue' 
                 icon={faTrashAlt} 
                 size='1x' 
               />

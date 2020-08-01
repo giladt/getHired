@@ -1,3 +1,8 @@
+body {
+    --span_btn_red_bg: rgba(255, 32, 32, 0.75);
+    --span_btn_red_fg: rgba(255, 255, 255, 1);
+}
+
 .Control,
 .Control:active {
     background-color: var(--input-bg);
@@ -39,6 +44,11 @@
     border-radius: 0.25rem;
     width: calc(2rem - 2px);
     height: calc(2rem - 2px);
+}
+
+.spanBtnRed {
+    background-color: var(--span_btn_red_bg);
+    color: var(--span_btn_red_fg);
 }
 
 .spanBtn:hover {
