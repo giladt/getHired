@@ -9,7 +9,7 @@ import InputGroup from 'react-bootstrap/InputGroup'
 import Form from 'react-bootstrap/Form'
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faPenSquare, faSave } from '@fortawesome/free-solid-svg-icons'
+import { faPenSquare, faSave, faTrashAlt } from '@fortawesome/free-solid-svg-icons'
 
 import Address from './Address'
 import Inpt from './Inpt'
@@ -63,7 +63,19 @@ export default function Education(params:any) {
               <div key={idx.toString()} className={`${(isOpen[idx])? s_Form.editMode : ''}`}>
                 <Row className="mb-2">
                   {isOpen[idx]?(
-                    <Inpt sm={11} name={`${idx}.institution_name`} text='Institution' type="text" placeholder="Where have you studied" onChange={params.handleEvent} value={item.institution_name} />
+                    <>
+                      <Inpt sm={10} name={`${idx}.institution_name`} text='Institution' type="text" placeholder="Where have you studied" onChange={params.handleEvent} value={item.institution_name} />
+                      <Col sm={1}>
+                        <span className={`${s_Form.spanBtn} ${s_Form.spanBtnRed}`}
+                          onClick={(e:any) => {
+                            e.target.id = 'delete_education'
+                            params.handleEvent(e,idx)
+                          }}
+                        >
+                          <FontAwesomeIcon icon={faTrashAlt} size='1x' />
+                        </span>
+                      </Col>
+                    </>
                   ):(
                     <Col sm={11}>
                       {item.institution_name || 'Please edit this new education entry -->'}

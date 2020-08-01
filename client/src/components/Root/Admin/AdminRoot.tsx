@@ -184,9 +184,10 @@ function AdminRoot(params:any) {
         })
         break;
 
-      case 'delete_contact_detail':
+      case 'delete_education':
         if(idx>=0){
-          edu = {...valEdu.splice(idx,1)}
+          edu = [...valEdu]
+          edu.splice(idx,1)
         }
         break;
   
