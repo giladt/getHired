@@ -112,7 +112,7 @@ function AdminRoot(params:any) {
     return {...state}
   }
 
-  const handlePersonalInfoChange:any = (e:any) => {
+  const handlePersonalInfoChange:any = (e:any, idx:any = -1) => {
     const {id, value, checked} = e.target;
     const nodes = id.split('.');
     let info:any = {...valInfo}
@@ -137,13 +137,20 @@ function AdminRoot(params:any) {
           is_default:''
         })}
         break;
+
+      case 'delete_contact_detail':
+        if(idx>=0){
+          info = {...valInfo.contact_details.splice(idx,1)}
+        }
+        break;
+  
       default:
         info = updateValue({...valInfo}, nodes, checked?checked:value);
     }
     setValInfo({...valInfo, ...info});
   }
 
-  const handleEducationChange:any = (e:any) => {
+  const handleEducationChange:any = (e:any, idx:any = -1) => {
     const {id, value} = e.target;
     const nodes = id.split('.');
     let edu:any = [...valEdu]
@@ -176,7 +183,14 @@ function AdminRoot(params:any) {
           }
         })
         break;
-      default:
+
+      case 'delete_contact_detail':
+        if(idx>=0){
+          edu = {...valEdu.splice(idx,1)}
+        }
+        break;
+  
+        default:
         let temp = updateValue({...valEdu[nodes[0]]}, [...nodes].slice(1,), value);
         edu[nodes[0]] = temp
     }
@@ -184,11 +198,9 @@ function AdminRoot(params:any) {
     setValEdu(edu);
   }
 
-  const handleExperienceChange:any = (e:any) => {
+  const handleExperienceChange:any = (e:any, idx:any = -1) => {
     const {id, value} = e.target
     const nodes = id.split('.');
-
-    console.log('handleExprChange',id,value)
 
     let expr:any = [...valExpr]
     let temp = updateValue({...valExpr[nodes[0]]}, [...nodes].slice(1,), value);
