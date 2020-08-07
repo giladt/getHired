@@ -202,11 +202,64 @@ function AdminRoot(params:any) {
   const handleExperienceChange:any = (e:any, idx:any = -1) => {
     const {id, value} = e.target
     const nodes = id.split('.');
-
     let expr:any = [...valExpr]
-    let temp = updateValue({...valExpr[nodes[0]]}, [...nodes].slice(1,), value);
 
-    expr[nodes[0]] = temp
+    switch(id){
+      case 'add_employer_address':
+        expr = {...valExpr.employer_address.push({
+          street: '',
+          house_no: '',
+          city: '',
+          state: '',
+          country: '',
+          postal_code: ''
+        })}
+        break;
+
+      case 'add_experience':
+        expr.push({
+          employer_name: '',
+          employer_address: {
+            street: '',
+            house_no: '',
+            city: '',
+            state: '',
+            country: '',
+            postal_code: ''
+          },
+          rolls: []
+        })
+        break;
+      
+      case 'add_roll':
+        expr.rolls.push({
+          title: '',
+          start_date: '',
+          end_date: '',
+          tasks: []
+        })
+        break;
+
+      case 'add_task':
+        expr.rolls.push({
+          title: '',
+          start_date: '',
+          end_date: '',
+          tasks: []
+        })
+        break;
+
+      case 'delete_experience':
+        if(idx>=0){
+          expr = [...valExpr]
+          expr.splice(idx,1)
+        }
+        break;
+  
+      default:
+        let temp = updateValue({...valExpr[nodes[0]]}, [...nodes].slice(1,), value);
+        expr[nodes[0]] = temp
+    }
     
     setValExpr(expr);
   }
