@@ -204,6 +204,8 @@ function AdminRoot(params:any) {
     const nodes = id.split('.');
     let expr:any = [...valExpr]
 
+    console.log("handle experience change",id,value, idx)
+
     switch(id){
       case 'add_employer_address':
         expr = {...valExpr.employer_address.push({
@@ -238,6 +240,13 @@ function AdminRoot(params:any) {
           end_date: '',
           tasks: []
         })
+        break;
+
+      case 'delete_roll':
+        if(idx>=0){
+          expr = [...valExpr]
+          expr[value].rolls.splice(idx,1)
+        }
         break;
 
       case 'add_task':

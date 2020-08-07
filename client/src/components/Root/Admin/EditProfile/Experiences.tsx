@@ -27,8 +27,8 @@ export default function Experiences(params:any) {
     setEl(tmp)
   }
 
-  const handleRollChange:any = (e:any) => {
-    params.handleEvent(e);
+  const handleRollChange:any = (e:any, idx:any) => {
+    params.handleEvent(e, idx);
   }
 
   return (
@@ -49,7 +49,7 @@ export default function Experiences(params:any) {
                     <span className={`${s_Form.spanBtn} ${s_Form.spanBtnRed}`}
                       onClick={(e:any) => {
                         e.target.id = 'delete_experience'
-                        params.onChange(e,idx)
+                        params.handleEvent(e,idx)
                       }}
                     >
                       <FontAwesomeIcon icon={faTrashAlt} size='1x' />
