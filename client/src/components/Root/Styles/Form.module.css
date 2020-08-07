@@ -19,7 +19,7 @@ body {
 }
 
 .Control::placeholder {
-    color: var(--main-fg-75);
+    color: var(--main-theme-fg-75);
 }
 
 .Control:hover {
