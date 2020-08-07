@@ -28,7 +28,7 @@ export default function Tasks(params:any) {
                 <span className={`${s_Form.spanBtn} ${s_Form.spanBtnRed}`}
                   onClick={(e:any) => {
                     e.target.id = 'delete_task'
-                    params.onChange(e,idx)
+                    params.handleEvent(e,idx)
                   }}
                 >
                   <FontAwesomeIcon icon={faTrashAlt} size='1x' />
@@ -39,7 +39,13 @@ export default function Tasks(params:any) {
         ))}
       </Col>
       <Col sm={12}>
-        <Button as={Col} sm={11} size="sm" className={s_Form.btnOutlinePrimary} variant="outline-primary">
+        <Button 
+          as={Col} sm={11} size="sm" 
+          variant="outline-primary"
+          className={s_Form.btnOutlinePrimary} 
+          id='add_task'
+          onClick={params.onChange} 
+          >
           Add Task
         </Button>
       </Col>
