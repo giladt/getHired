@@ -22,7 +22,7 @@ const GET_CANDIDATES_LIST_QL = gql `
 `;
 
 const GET_CANDIDATE_QL = gql `
-  query($id: ID) {
+  query Candidate($id: ID) {
     Candidate(id: $id) {
       _id
       first_name

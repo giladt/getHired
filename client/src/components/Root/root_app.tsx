@@ -49,14 +49,12 @@ class Root extends React.Component<any>{
     if(!prevState.page[props.match.params.page]){
       this.setState({page:{[props.match.params.page]:'active'}});  
     }
-    // window.history.replaceState(null,'title',`/${props.match.params.page}`);
   }
 
   render(){
     const props:any = this.props;
     const state:any = this.state;
-    
-    
+
     if(state.user && state.employer) {
 
       return(
