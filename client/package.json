@@ -24,7 +24,7 @@
         "react-geocode": "^0.2.1",
         "react-moment": "^0.9.7",
         "react-router-dom": "^5.2.0",
-        "react-scripts": "^3.4.1",
+        "react-scripts": "^3.4.3",
         "react-transition-group": "^4.4.1",
         "typescript": "^3.9.3"
     },
