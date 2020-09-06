@@ -1,22 +1,23 @@
-@media screen and (min-width: 750px) {
+@media screen and (min-width: 768px) {
      :local(.content) {
         grid-area: con;
     }
 }
 
-@media screen and (max-width: 750px) {
+@media screen and (max-width: 768px) {
      :local(.content) {
-        grid-row-start: 3;
-        grid-row-end: 3;
+        /* grid-row-start: 2;
+        grid-row-end: 2;
         grid-column-start: 2;
-        grid-column-end: 4;
+        grid-column-end: 2; */
+        
     }
 }
 
 :local(.content) {
     color: var(--main-fg);
     line-height: 1.5rem;
-    padding: 1rem;
+    padding: 0 0.25rem;
     position: relative;
     overflow: hidden;
     background-color: var(--main-bg);
@@ -75,8 +76,8 @@
 }
 
 :local(.content>article) {
+    width: 100%;
     height: 100%;
     overflow-y: auto;
-    width: 100%;
     padding-right: 1rem;
 }
