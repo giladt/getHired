@@ -63,7 +63,17 @@
     color: var(--main-fg);
 }
 
-:global(main) {
-    display: grid;
-    margin: 5vh 2.5vw;
+@media (min-width: 768px){
+    :global(main) {
+        display: grid;
+        margin: 5vh 2.5vw;
+    }
 }
+
+@media (max-width: 768px){
+    :global(main) {
+        display: grid;
+        margin: 0;
+    }
+}
+
