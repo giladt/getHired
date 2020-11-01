@@ -11,7 +11,7 @@ import Main from './components/main';
 import styles from './App.module.css';
 
 const dev_link = new HttpLink({uri: `http://localhost:4000/api`});
-const prod_link = new HttpLink({uri: `${process.env.PUBLIC_URL}/api`});
+const prod_link = new HttpLink({uri: `${process.env.REACT_APP_PUBLIC_URL}/api`});
 
 // Apollo Client Setup
 const cache = new InMemoryCache();
